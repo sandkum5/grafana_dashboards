@@ -2053,7 +2053,7 @@
       {
         "allowCustomValue": false,
         "current": {
-          "text": "rtplab2-infinity-datasource",
+          "text": "intersight-infinity-datasource",
           "value": "ff6ht37mnfgg0d"
         },
         "label": "Intersight_Data_Source",
