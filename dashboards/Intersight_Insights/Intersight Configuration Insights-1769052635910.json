@@ -1,0 +1,2084 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 5,
+  "links": [],
+  "liveNow": true,
+  "panels": [
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "${Intersight_Data_Source}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [
+            "sum"
+          ],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "orientation": "horizontal",
+        "showValue": "auto",
+        "stacking": "none",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        },
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "TargetPlatform",
+              "text": "",
+              "type": "string"
+            },
+            {
+              "selector": "count",
+              "text": "",
+              "type": "number"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${Intersight_Data_Source}"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "Results",
+          "source": "url",
+          "type": "json",
+          "url": "/api/v1/server/ProfileTemplates?$apply=groupby((TargetPlatform,ManagementMode),aggregate($count as count))",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Advisories In-progress",
+      "transformations": [
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "count"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "${Intersight_Data_Source}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic-by-name"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 13,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "colorByField": "LicenseCount",
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "orientation": "horizontal",
+        "showValue": "auto",
+        "stacking": "none",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        },
+        "xField": "LicenseType",
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "columns": [],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${Intersight_Data_Source}"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "pagination_max_pages": 1,
+          "pagination_mode": "offset",
+          "pagination_param_offset_field_name": "$skip",
+          "pagination_param_offset_value": 0,
+          "pagination_param_size_field_name": "$top",
+          "pagination_param_size_value": 1000,
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "Results",
+          "source": "url",
+          "type": "json",
+          "url": "/api/v1/license/LicenseInfos?$select=LicenseType,LicenseCountPurchased,LicenseCount,LicenseState,Balance",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "License Count",
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "LicenseCount",
+                "LicenseState",
+                "LicenseType"
+              ]
+            }
+          }
+        },
+        {
+          "id": "filterByValue",
+          "options": {
+            "filters": [
+              {
+                "config": {
+                  "id": "equal",
+                  "options": {
+                    "value": "Essential"
+                  }
+                },
+                "fieldName": "LicenseType"
+              },
+              {
+                "config": {
+                  "id": "equal",
+                  "options": {
+                    "value": "Advantage"
+                  }
+                },
+                "fieldName": "LicenseType"
+              }
+            ],
+            "match": "any",
+            "type": "include"
+          }
+        },
+        {
+          "disabled": true,
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": false,
+                "field": "LicenseCountPurchased"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "${Intersight_Data_Source}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [
+            {
+              "options": {
+                "None": {
+                  "color": "orange",
+                  "index": 1
+                },
+                "OK": {
+                  "color": "green",
+                  "index": 0
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 8
+      },
+      "id": 16,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "colorByField": "UpdateStatus",
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [
+            "sum"
+          ],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "orientation": "horizontal",
+        "showValue": "auto",
+        "stacking": "none",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        },
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "TargetPlatform",
+              "text": "",
+              "type": "string"
+            },
+            {
+              "selector": "count",
+              "text": "",
+              "type": "number"
+            },
+            {
+              "selector": "UpdateStatus",
+              "text": "",
+              "type": "string"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${Intersight_Data_Source}"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "Results",
+          "source": "url",
+          "type": "json",
+          "url": "/api/v1/server/ProfileTemplates?$apply=groupby((TargetPlatform,ManagementMode,UpdateStatus),aggregate($count as count))",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Server Profile Templates Usage Count",
+      "transformations": [
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "count"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "${Intersight_Data_Source}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 8
+      },
+      "id": 15,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [
+            "sum"
+          ],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "orientation": "horizontal",
+        "showValue": "auto",
+        "stacking": "none",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        },
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "columns": [],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${Intersight_Data_Source}"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "pagination_max_pages": 1,
+          "pagination_mode": "none",
+          "pagination_param_list_field_type": "query",
+          "pagination_param_offset_field_name": "$skip",
+          "pagination_param_offset_field_type": "query",
+          "pagination_param_offset_value": 1000,
+          "pagination_param_size_field_name": "$top",
+          "pagination_param_size_field_type": "query",
+          "pagination_param_size_value": 1000,
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "Results",
+          "source": "url",
+          "type": "json",
+          "url": "/api/v1/server/Profiles?$apply=groupby((DeployStatus,ConfigContext.ConfigStateSummary,TargetPlatform,ManagementMode),aggregate($count as count))",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Server Profile Deploy State",
+      "transformations": [
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "count"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "${Intersight_Data_Source}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 16
+      },
+      "id": 3,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "orientation": "horizontal",
+        "showValue": "auto",
+        "stacking": "none",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        },
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "columns": [],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${Intersight_Data_Source}"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "pagination_mode": "offset",
+          "pagination_param_offset_field_name": "$skip",
+          "pagination_param_offset_value": 100,
+          "pagination_param_size_field_name": "$top",
+          "pagination_param_size_value": 100,
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "Results",
+          "source": "url",
+          "type": "json",
+          "url": "/api/v1/fabric/SwitchClusterProfiles?$apply=groupby((ConfigContext.ConfigState,DeployStatus,TargetPlatform),aggregate($count as count))",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Domain Profile Deploy State",
+      "transformations": [
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "count"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "${Intersight_Data_Source}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 16
+      },
+      "id": 2,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [
+            "sum"
+          ],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "orientation": "horizontal",
+        "showValue": "auto",
+        "stacking": "none",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        },
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "columns": [],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${Intersight_Data_Source}"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "pagination_max_pages": 1,
+          "pagination_mode": "none",
+          "pagination_param_list_field_type": "query",
+          "pagination_param_offset_field_name": "$skip",
+          "pagination_param_offset_field_type": "query",
+          "pagination_param_offset_value": 1000,
+          "pagination_param_size_field_name": "$top",
+          "pagination_param_size_field_type": "query",
+          "pagination_param_size_value": 1000,
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "Results",
+          "source": "url",
+          "type": "json",
+          "url": "/api/v1/cond/Alarms?$filter=(Severity in ('Critical', 'Warning', 'Info') or Flapping eq 'NotFlapping') and (Acknowledge eq 'None') and (Suppressed eq false)&$apply=groupby((Severity),aggregate($count as count))",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Alarms",
+      "transformations": [
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "count"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "${Intersight_Data_Source}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 24
+      },
+      "id": 17,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [
+            "sum"
+          ],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "orientation": "horizontal",
+        "showValue": "always",
+        "stacking": "none",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        },
+        "xField": "Severity",
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 100
+      },
+      "pluginVersion": "12.0.0",
+      "targets": [
+        {
+          "columns": [],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${Intersight_Data_Source}"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "pagination_max_pages": 1,
+          "pagination_mode": "none",
+          "pagination_param_list_field_type": "query",
+          "pagination_param_offset_field_name": "$skip",
+          "pagination_param_offset_field_type": "query",
+          "pagination_param_offset_value": 1000,
+          "pagination_param_size_field_name": "$top",
+          "pagination_param_size_field_type": "query",
+          "pagination_param_size_value": 1000,
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "Results",
+          "source": "url",
+          "type": "json",
+          "url": "/api/v1/cond/Alarms?$filter=(Severity in ('Critical', 'Warning', 'Info') or Flapping eq 'NotFlapping') and (Acknowledge eq 'None') and (Suppressed eq true)&$apply=groupby((Severity),aggregate($count as count))",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Suppressed Alarms",
+      "transformations": [
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "count"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "${Intersight_Data_Source}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 24
+      },
+      "id": 18,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [
+            "sum"
+          ],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "orientation": "horizontal",
+        "showValue": "always",
+        "stacking": "none",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        },
+        "xField": "Severity",
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 100
+      },
+      "pluginVersion": "12.0.0",
+      "targets": [
+        {
+          "columns": [],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${Intersight_Data_Source}"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "pagination_max_pages": 1,
+          "pagination_mode": "none",
+          "pagination_param_list_field_type": "query",
+          "pagination_param_offset_field_name": "$skip",
+          "pagination_param_offset_field_type": "query",
+          "pagination_param_offset_value": 1000,
+          "pagination_param_size_field_name": "$top",
+          "pagination_param_size_field_type": "query",
+          "pagination_param_size_value": 1000,
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "Results",
+          "source": "url",
+          "type": "json",
+          "url": "/api/v1/cond/Alarms?$filter=(Severity in ('Critical', 'Warning', 'Info')) and (Acknowledge eq 'Acknowledge') and (Suppressed eq false)&$apply=groupby((Severity),aggregate($count as count))",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Acknowledged Alarms",
+      "transformations": [
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "count"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "${Intersight_Data_Source}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [
+            {
+              "options": {
+                "Critical": {
+                  "color": "red",
+                  "index": 0
+                },
+                "Info": {
+                  "color": "green",
+                  "index": 2
+                },
+                "Warning": {
+                  "color": "orange",
+                  "index": 1
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 23,
+        "w": 24,
+        "x": 0,
+        "y": 32
+      },
+      "id": 20,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "colorByField": "OrigSeverity",
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "orientation": "horizontal",
+        "showValue": "auto",
+        "stacking": "none",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        },
+        "xField": "Code",
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "pluginVersion": "12.0.0",
+      "targets": [
+        {
+          "columns": [],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${Intersight_Data_Source}"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "pagination_max_pages": 1,
+          "pagination_mode": "offset",
+          "pagination_param_list_field_type": "query",
+          "pagination_param_offset_field_name": "$skip",
+          "pagination_param_offset_field_type": "query",
+          "pagination_param_offset_value": 0,
+          "pagination_param_size_field_name": "$top",
+          "pagination_param_size_field_type": "query",
+          "pagination_param_size_value": 1000,
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "Results",
+          "source": "url",
+          "type": "json",
+          "url": "/api/v1/cond/Alarms?$filter=(Severity in ('Critical', 'Warning', 'Info')) and (Acknowledge eq 'None') and (Suppressed eq false)&$select=Name,Severity,OrigSeverity,Suppressed,MsAffectedObject,Code,Description,CreationTime,Flapping,FlappingCount,AffectedMoDisplayName,AffectedMoId",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Alarm Aggregation",
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "Code",
+                "Severity",
+                "OrigSeverity"
+              ]
+            }
+          }
+        },
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "Code": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "CreationTime": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "Description": {
+                "aggregations": []
+              },
+              "Name": {
+                "aggregations": []
+              },
+              "OrigSeverity": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "Severity": {
+                "aggregations": [
+                  "count"
+                ],
+                "operation": "aggregate"
+              }
+            }
+          }
+        },
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "Severity (count)"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "${Intersight_Data_Source}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true,
+            "inspect": false
+          },
+          "mappings": [
+            {
+              "options": {
+                "Cleared": {
+                  "color": "green",
+                  "index": 3
+                },
+                "Critical": {
+                  "color": "red",
+                  "index": 0
+                },
+                "Info": {
+                  "color": "yellow",
+                  "index": 2
+                },
+                "Warning": {
+                  "color": "orange",
+                  "index": 1
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Severity"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "palette-classic"
+                }
+              },
+              {
+                "id": "custom.width",
+                "value": 98
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Code"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 70
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "CreationTime"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 219
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Severity"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text",
+                  "wrapText": false
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 55
+      },
+      "id": 19,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "enablePagination": true,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "12.0.0",
+      "targets": [
+        {
+          "columns": [],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${Intersight_Data_Source}"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "pagination_max_pages": 1,
+          "pagination_mode": "none",
+          "pagination_param_list_field_type": "query",
+          "pagination_param_offset_field_name": "$skip",
+          "pagination_param_offset_field_type": "query",
+          "pagination_param_offset_value": 1000,
+          "pagination_param_size_field_name": "$top",
+          "pagination_param_size_field_type": "query",
+          "pagination_param_size_value": 1000,
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "Results",
+          "source": "url",
+          "type": "json",
+          "url": "/api/v1/cond/Alarms?$filter=(Severity in ('Critical', 'Warning', 'Info')) and (Acknowledge eq 'None') and (Suppressed eq false)&$select=Name,Severity,OrigSeverity,Suppressed,MsAffectedObject,Code,Description,CreationTime,Flapping,FlappingCount,AffectedMoDisplayName,AffectedMoId",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Alarm Details",
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "AffectedMoDisplayName",
+                "Code",
+                "CreationTime",
+                "Description",
+                "Severity"
+              ]
+            }
+          }
+        },
+        {
+          "disabled": true,
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "Code": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "CreationTime": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "Name": {
+                "aggregations": []
+              },
+              "Severity": {
+                "aggregations": [],
+                "operation": "groupby"
+              }
+            }
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {
+              "AffectedMoDisplayName": 3,
+              "Code": 1,
+              "CreationTime": 2,
+              "Description": 4,
+              "Severity": 0
+            },
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "${Intersight_Data_Source}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true,
+            "inspect": false
+          },
+          "mappings": [
+            {
+              "options": {
+                "NotConnected": {
+                  "color": "dark-red",
+                  "index": 0
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Status"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "StatusErrorReason"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 330
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 64
+      },
+      "id": 12,
+      "options": {
+        "cellHeight": "sm",
+        "enablePagination": true,
+        "footer": {
+          "countRows": false,
+          "enablePagination": true,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "12.0.0",
+      "targets": [
+        {
+          "columns": [],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${Intersight_Data_Source}"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "pagination_mode": "offset",
+          "pagination_param_offset_field_name": "$skip",
+          "pagination_param_offset_value": 0,
+          "pagination_param_size_field_name": "$top",
+          "pagination_param_size_value": 1000,
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "Results",
+          "source": "url",
+          "type": "json",
+          "url": "/api/v1/asset/Targets?$filter=Status eq 'NotConnected'&$select=Name,ProductId,Status,StatusErrorReason,TargetType",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Disconnected Targets",
+      "transformations": [
+        {
+          "id": "extractFields",
+          "options": {
+            "delimiter": ",",
+            "format": "json",
+            "jsonPaths": [
+              {
+                "alias": "Product_Id",
+                "path": "[0]"
+              }
+            ],
+            "source": "ProductId"
+          }
+        },
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "Name",
+                "Status",
+                "StatusErrorReason",
+                "TargetType",
+                "Product_Id",
+                "Moid"
+              ]
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "${Intersight_Data_Source}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true,
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Task_Name"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 181
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Task_InstId"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 226
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Workflow_TraceId"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 214
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Workflow_Moid"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 237
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "TaskInfos"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 449
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Workflow_EndTime"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 217
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Workflow_InstId"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 204
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Workflow_Message"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 233
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 15,
+        "w": 24,
+        "x": 0,
+        "y": 72
+      },
+      "id": 14,
+      "options": {
+        "cellHeight": "sm",
+        "enablePagination": true,
+        "footer": {
+          "countRows": false,
+          "enablePagination": true,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "12.0.0",
+      "targets": [
+        {
+          "columns": [],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${Intersight_Data_Source}"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "pagination_mode": "offset",
+          "pagination_param_offset_field_name": "$skip",
+          "pagination_param_offset_value": 0,
+          "pagination_param_size_field_name": "$top",
+          "pagination_param_size_value": 100,
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "$map(Results, function($v){\n  {\n    \"Workflow_InstId\": $v.InstId,\n    \"Workflow_TraceId\": $v.TraceId,\n    \"Workflow_Message\": $v.Message.Message,\n    \"Workflow_Severity\": $v.Message.Severity,\n    \"Workflow_Name\": $v.Name,\n    \"Workflow_Src\": $v.Src,\n   \"Workflow_Moid\": $v.Moid,\n    \"Workflow_Status\": $v.Status,\n    \"Workflow_StartTime\": $v.StartTime,\n    \"Workflow_EndTime\": $v.EndTime,\n    \"TaskInfos\": $v.TaskInfos[Status = 'FAILED'].{\"Status\": Status,  \"InstId\": InstId, \"Moid\": Moid, \"RunningInstId\": RunningInstId, \"FailureReason\": FailureReason}\n  }\n})",
+          "source": "url",
+          "type": "json",
+          "url": "/api/v1/workflow/WorkflowInfos?$filter=Status eq 'FAILED'&$expand=TaskInfos($select=Name,Moid,Status,RunningInstId,InstId,FailureReason,StartTime,EndTime)&$select=AccountMoid,InstId,Name,Src,Moid,Message,StartTime,EndTime,Status,WorkflowStatus,TraceId,TaskInfos,Message&$orderby=StartTime desc",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Failed Workflows",
+      "transformations": [
+        {
+          "id": "extractFields",
+          "options": {
+            "delimiter": ",",
+            "format": "json",
+            "jsonPaths": [
+              {
+                "alias": "Task_FailureReason",
+                "path": "FailureReason"
+              },
+              {
+                "alias": "Task_Status",
+                "path": "Status"
+              },
+              {
+                "alias": "Task_InstId",
+                "path": "InstId"
+              },
+              {
+                "alias": "Task_Moid",
+                "path": "Moid"
+              },
+              {
+                "alias": "Task_RunningInstId",
+                "path": "RunningInstId"
+              }
+            ],
+            "source": "TaskInfos"
+          }
+        },
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "Workflow_EndTime",
+                "Workflow_InstId",
+                "Workflow_Message",
+                "Workflow_Moid",
+                "Workflow_Name",
+                "Workflow_Severity",
+                "Workflow_Src",
+                "Workflow_StartTime",
+                "Workflow_Status",
+                "Workflow_TraceId",
+                "Task_FailureReason",
+                "Task_Status",
+                "Task_InstId",
+                "Task_Moid",
+                "Task_RunningInstId"
+              ]
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "${Intersight_Data_Source}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic-by-name"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true,
+            "inspect": false
+          },
+          "mappings": [
+            {
+              "options": {
+                "from": 51,
+                "result": {
+                  "color": "dark-orange",
+                  "index": 0
+                },
+                "to": 70
+              },
+              "type": "range"
+            },
+            {
+              "options": {
+                "from": 71,
+                "result": {
+                  "color": "dark-red",
+                  "index": 1
+                },
+                "to": 100
+              },
+              "type": "range"
+            },
+            {
+              "options": {
+                "from": 0,
+                "result": {
+                  "color": "dark-green",
+                  "index": 2
+                },
+                "to": 50
+              },
+              "type": "range"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Used"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "applyToRow": true,
+                  "type": "color-background"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 24,
+        "x": 0,
+        "y": 87
+      },
+      "id": 8,
+      "options": {
+        "cellHeight": "sm",
+        "enablePagination": true,
+        "footer": {
+          "countRows": false,
+          "enablePagination": true,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": false,
+            "displayName": "Name"
+          }
+        ]
+      },
+      "pluginVersion": "12.0.0",
+      "targets": [
+        {
+          "columns": [],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${Intersight_Data_Source}"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "pagination_mode": "offset",
+          "pagination_param_offset_field_name": "$skip",
+          "pagination_param_offset_value": 100,
+          "pagination_param_size_field_name": "$top",
+          "pagination_param_size_value": 100,
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "Results",
+          "source": "url",
+          "type": "json",
+          "url": "/api/v1/storage/Items?$filter=Size ne 'nothing' and NetworkElement ne 'null'&$expand=NetworkElement($select=Serial),RegisteredDevice($select=DeviceHostname)&$select=Name,NetworkElement,RegisteredDevice,Size,Used",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "FI Disk Utilization",
+      "transformations": [
+        {
+          "id": "extractFields",
+          "options": {
+            "delimiter": ",",
+            "format": "json",
+            "jsonPaths": [
+              {
+                "alias": "",
+                "path": "Serial"
+              }
+            ],
+            "source": "NetworkElement"
+          }
+        },
+        {
+          "id": "extractFields",
+          "options": {
+            "delimiter": ",",
+            "format": "json",
+            "jsonPaths": [
+              {
+                "path": "DeviceHostname[0]"
+              }
+            ],
+            "source": "RegisteredDevice"
+          }
+        },
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "Name",
+                "Size",
+                "Used",
+                "Serial",
+                "DeviceHostname[0]"
+              ]
+            }
+          }
+        }
+      ],
+      "type": "table"
+    }
+  ],
+  "preload": false,
+  "schemaVersion": 42,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allowCustomValue": false,
+        "current": {
+          "text": "rtplab2-datasource",
+          "value": "cfavnbodcvls0f"
+        },
+        "label": "Intersight_Data_Source",
+        "name": "Intersight_Data_Source",
+        "options": [],
+        "query": "yesoreyeram-infinity-datasource",
+        "refresh": 1,
+        "regex": "",
+        "type": "datasource"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Intersight Configuration Insights",
+  "uid": "9cb2a2f8-c97b-42bc-aa68-cc945607b7d1",
+  "version": 2
+}
