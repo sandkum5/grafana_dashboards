@@ -1,0 +1,15 @@
+apiVersion: 1
+
+datasources:
+  - name: "Intersight Infinity - OAuth2 Credentials"
+    type: "yesoreyeram-infinity-datasource"
+    url: "https://intersight.com"
+    access: "proxy"
+    isDefault: false
+    jsonData:
+      auth_method: "oauth2"
+      pathEncodedUrlsEnabled: true
+      allowedHosts:
+        - "https://intersight.com"
+      oauth2:
+        token_url: "https://intersight.com/iam/token" # URL to fetch the OAuth token
