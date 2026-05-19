@@ -18,22 +18,84 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 3,
+  "id": null,
   "links": [],
   "liveNow": true,
   "panels": [
     {
-      "collapsed": false,
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "${Intersight_Data_Source}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
       "gridPos": {
-        "h": 1,
-        "w": 24,
+        "h": 3,
+        "w": 12,
         "x": 0,
         "y": 0
       },
-      "id": 28,
-      "panels": [],
-      "title": "Object Count",
-      "type": "row"
+      "id": 31,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [],
+          "fields": "/^A$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.4.0-21377967493",
+      "targets": [
+        {
+          "columns": [],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${Intersight_Data_Source}"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "Results[0].AccountMoid",
+          "source": "url",
+          "type": "json",
+          "url": "/api/v1/organization/Organizations?$top=1&$select=AccountMoid",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Deployment ID / AccountMoid",
+      "type": "stat"
     },
     {
       "collapsed": false,
@@ -41,7 +103,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 1
+        "y": 3
       },
       "id": 22,
       "panels": [],
@@ -112,7 +174,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 2
+        "y": 4
       },
       "id": 29,
       "options": {
@@ -142,7 +204,7 @@
         "xTickLabelRotation": 0,
         "xTickLabelSpacing": 100
       },
-      "pluginVersion": "12.3.1",
+      "pluginVersion": "12.4.0-21377967493",
       "targets": [
         {
           "columns": [],
@@ -214,7 +276,21 @@
               "mode": "off"
             }
           },
-          "mappings": [],
+          "mappings": [
+            {
+              "options": {
+                "Intersight": {
+                  "color": "green",
+                  "index": 1
+                },
+                "UCSM": {
+                  "color": "orange",
+                  "index": 0
+                }
+              },
+              "type": "value"
+            }
+          ],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -235,17 +311,19 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 2
+        "y": 4
       },
-      "id": 1,
+      "id": 30,
       "options": {
         "barRadius": 0,
         "barWidth": 0.97,
-        "colorByField": "Model",
+        "colorByField": "ManagementMode",
         "fullHighlight": false,
         "groupWidth": 0.7,
         "legend": {
-          "calcs": [],
+          "calcs": [
+            "sum"
+          ],
           "displayMode": "list",
           "placement": "bottom",
           "showLegend": true
@@ -262,7 +340,7 @@
         "xTickLabelRotation": 0,
         "xTickLabelSpacing": 100
       },
-      "pluginVersion": "12.3.1",
+      "pluginVersion": "12.4.0-21377967493",
       "targets": [
         {
           "columns": [],
@@ -278,7 +356,7 @@
           "root_selector": "Results",
           "source": "url",
           "type": "json",
-          "url": "/api/v1/network/ElementSummaries?$apply=groupby((Model), aggregate($count as count))",
+          "url": "/api/v1/network/ElementSummaries?$apply=groupby((Model,ManagementMode), aggregate($count as count))",
           "url_options": {
             "data": "",
             "method": "GET"
@@ -373,7 +451,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 9
+        "y": 11
       },
       "id": 27,
       "options": {
@@ -400,7 +478,7 @@
         "xTickLabelRotation": 0,
         "xTickLabelSpacing": 100
       },
-      "pluginVersion": "12.3.1",
+      "pluginVersion": "12.4.0-21377967493",
       "targets": [
         {
           "columns": [],
@@ -421,7 +499,7 @@
           "root_selector": "Results",
           "source": "url",
           "type": "json",
-          "url": "/api/v1/equipment/Chasses?$apply=groupby((Model), aggregate($count as count))",
+          "url": "/api/v1/equipment/Chasses?$apply=groupby((Model,ManagementMode), aggregate($count as count))",
           "url_options": {
             "data": "",
             "method": "GET"
@@ -512,7 +590,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 9
+        "y": 11
       },
       "id": 18,
       "options": {
@@ -539,7 +617,7 @@
         "xTickLabelRotation": 0,
         "xTickLabelSpacing": 100
       },
-      "pluginVersion": "12.3.1",
+      "pluginVersion": "12.4.0-21377967493",
       "targets": [
         {
           "columns": [],
@@ -555,7 +633,7 @@
           "root_selector": "Results",
           "source": "url",
           "type": "json",
-          "url": "/api/v1/network/ElementSummaries?$apply=groupby((ManagementMode,Version,Model),aggregate($count as count))",
+          "url": "/api/v1/network/ElementSummaries?$apply=groupby((ManagementMode,BundleVersion,Model),aggregate($count as count))",
           "url_options": {
             "data": "",
             "method": "GET"
@@ -632,7 +710,7 @@
         "h": 6,
         "w": 12,
         "x": 0,
-        "y": 17
+        "y": 19
       },
       "id": 5,
       "options": {
@@ -661,7 +739,7 @@
         "xTickLabelRotation": 0,
         "xTickLabelSpacing": 200
       },
-      "pluginVersion": "12.3.1",
+      "pluginVersion": "12.4.0-21377967493",
       "targets": [
         {
           "columns": [],
@@ -733,7 +811,21 @@
             }
           },
           "fieldMinMax": false,
-          "mappings": [],
+          "mappings": [
+            {
+              "options": {
+                "Intersight": {
+                  "color": "green",
+                  "index": 0
+                },
+                "UCSM": {
+                  "color": "orange",
+                  "index": 1
+                }
+              },
+              "type": "value"
+            }
+          ],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -751,16 +843,16 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 6,
+        "h": 8,
         "w": 12,
         "x": 12,
-        "y": 17
+        "y": 19
       },
-      "id": 15,
+      "id": 33,
       "options": {
         "barRadius": 0,
         "barWidth": 0.97,
-        "colorByField": "Model",
+        "colorByField": "ManagementMode",
         "fullHighlight": false,
         "groupWidth": 0.7,
         "legend": {
@@ -777,11 +869,11 @@
           "mode": "single",
           "sort": "none"
         },
-        "xField": "Model",
+        "xField": "BundleVersion",
         "xTickLabelRotation": 0,
-        "xTickLabelSpacing": 200
+        "xTickLabelSpacing": 100
       },
-      "pluginVersion": "12.3.1",
+      "pluginVersion": "12.4.0-21377967493",
       "targets": [
         {
           "columns": [],
@@ -797,14 +889,14 @@
           "root_selector": "Results",
           "source": "url",
           "type": "json",
-          "url": "/api/v1/equipment/ExpanderModules?$apply=groupby((Model), aggregate($count as count))",
+          "url": "/api/v1/network/ElementSummaries?$apply=groupby((ManagementMode,BundleVersion),aggregate($count as count))",
           "url_options": {
             "data": "",
             "method": "GET"
           }
         }
       ],
-      "title": "Expander Module Models",
+      "title": "Fabric Interconnect Version Info Count",
       "transformations": [
         {
           "id": "sortBy",
@@ -860,7 +952,7 @@
                 "result": {
                   "color": "orange",
                   "index": 0,
-                  "text": "Rack Servers"
+                  "text": "Rack Server FAN"
                 }
               },
               "type": "special"
@@ -886,7 +978,7 @@
         "h": 11,
         "w": 12,
         "x": 0,
-        "y": 23
+        "y": 25
       },
       "id": 7,
       "options": {
@@ -913,7 +1005,7 @@
         "xTickLabelRotation": 0,
         "xTickLabelSpacing": 100
       },
-      "pluginVersion": "12.3.1",
+      "pluginVersion": "12.4.0-21377967493",
       "targets": [
         {
           "columns": [],
@@ -1003,10 +1095,130 @@
         "overrides": []
       },
       "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 12,
+        "y": 27
+      },
+      "id": 15,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "colorByField": "Model",
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "orientation": "horizontal",
+        "showValue": "auto",
+        "stacking": "none",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        },
+        "xField": "Model",
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 200
+      },
+      "pluginVersion": "12.4.0-21377967493",
+      "targets": [
+        {
+          "columns": [],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${Intersight_Data_Source}"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "Results",
+          "source": "url",
+          "type": "json",
+          "url": "/api/v1/equipment/ExpanderModules?$apply=groupby((Model), aggregate($count as count))",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Expander Module Models",
+      "transformations": [
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "count"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "${Intersight_Data_Source}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic-by-name"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "left",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "fieldMinMax": false,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
         "h": 11,
         "w": 12,
         "x": 12,
-        "y": 23
+        "y": 33
       },
       "id": 3,
       "options": {
@@ -1033,7 +1245,7 @@
         "xTickLabelRotation": 0,
         "xTickLabelSpacing": 0
       },
-      "pluginVersion": "12.3.1",
+      "pluginVersion": "12.4.0-21377967493",
       "targets": [
         {
           "columns": [],
@@ -1126,7 +1338,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 34
+        "y": 36
       },
       "id": 11,
       "options": {
@@ -1153,7 +1365,7 @@
         "xTickLabelRotation": 0,
         "xTickLabelSpacing": 200
       },
-      "pluginVersion": "12.3.1",
+      "pluginVersion": "12.4.0-21377967493",
       "targets": [
         {
           "columns": [],
@@ -1243,12 +1455,12 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 18,
+        "h": 10,
         "w": 12,
-        "x": 12,
-        "y": 34
+        "x": 0,
+        "y": 44
       },
-      "id": 14,
+      "id": 6,
       "options": {
         "barRadius": 0,
         "barWidth": 0.97,
@@ -1256,10 +1468,7 @@
         "fullHighlight": false,
         "groupWidth": 0.7,
         "legend": {
-          "calcs": [
-            "count",
-            "sum"
-          ],
+          "calcs": [],
           "displayMode": "list",
           "placement": "bottom",
           "showLegend": true
@@ -1274,9 +1483,9 @@
         },
         "xField": "Model",
         "xTickLabelRotation": 0,
-        "xTickLabelSpacing": 100
+        "xTickLabelSpacing": 0
       },
-      "pluginVersion": "12.3.1",
+      "pluginVersion": "12.4.0-21377967493",
       "targets": [
         {
           "columns": [],
@@ -1292,14 +1501,14 @@
           "root_selector": "Results",
           "source": "url",
           "type": "json",
-          "url": "/api/v1/equipment/Transceivers?$filter=Status ne 'removed'&$apply=groupby((Model), aggregate($count as count))",
+          "url": "/api/v1/equipment/Fans?$apply=groupby((Model), aggregate($count as count))",
           "url_options": {
             "data": "",
             "method": "GET"
           }
         }
       ],
-      "title": "Transceiver Models",
+      "title": "FAN Models",
       "transformations": [
         {
           "id": "sortBy",
@@ -1366,12 +1575,12 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 10,
+        "h": 18,
         "w": 12,
-        "x": 0,
-        "y": 42
+        "x": 12,
+        "y": 44
       },
-      "id": 6,
+      "id": 14,
       "options": {
         "barRadius": 0,
         "barWidth": 0.97,
@@ -1379,7 +1588,10 @@
         "fullHighlight": false,
         "groupWidth": 0.7,
         "legend": {
-          "calcs": [],
+          "calcs": [
+            "count",
+            "sum"
+          ],
           "displayMode": "list",
           "placement": "bottom",
           "showLegend": true
@@ -1392,11 +1604,11 @@
           "mode": "single",
           "sort": "none"
         },
-        "xField": "Model",
+        "xField": "Name",
         "xTickLabelRotation": 0,
-        "xTickLabelSpacing": 0
+        "xTickLabelSpacing": 100
       },
-      "pluginVersion": "12.3.1",
+      "pluginVersion": "12.4.0-21377967493",
       "targets": [
         {
           "columns": [],
@@ -1412,14 +1624,136 @@
           "root_selector": "Results",
           "source": "url",
           "type": "json",
-          "url": "/api/v1/equipment/Fans?$apply=groupby((Model), aggregate($count as count))",
+          "url": "/api/v1/equipment/Transceivers?$filter=Status ne 'removed'&$apply=groupby((Name,Model), aggregate($count as count))",
           "url_options": {
             "data": "",
             "method": "GET"
           }
         }
       ],
-      "title": "FAN Models",
+      "title": "Transceiver Models",
+      "transformations": [
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "count"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "${Intersight_Data_Source}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 62
+      },
+      "id": 1,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "colorByField": "ConnectorVersion",
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [
+            "count",
+            "sum"
+          ],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "orientation": "horizontal",
+        "showValue": "auto",
+        "stacking": "none",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        },
+        "xField": "ConnectorVersion",
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 100
+      },
+      "pluginVersion": "12.4.0-21377967493",
+      "targets": [
+        {
+          "columns": [],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${Intersight_Data_Source}"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "Results",
+          "source": "url",
+          "type": "json",
+          "url": "/api/v1/asset/DeviceRegistrations?$apply=groupby((ConnectorVersion,PlatformType,Pid), aggregate($count as count))",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Device Connector Versions",
       "transformations": [
         {
           "id": "sortBy",
@@ -1442,7 +1776,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 52
+        "y": 71
       },
       "id": 23,
       "panels": [],
@@ -1516,7 +1850,7 @@
         "h": 6,
         "w": 12,
         "x": 0,
-        "y": 53
+        "y": 72
       },
       "id": 20,
       "options": {
@@ -1529,7 +1863,7 @@
           "calcs": [
             "sum"
           ],
-          "displayMode": "list",
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -1543,9 +1877,9 @@
         },
         "xField": "ManagementMode",
         "xTickLabelRotation": 0,
-        "xTickLabelSpacing": 200
+        "xTickLabelSpacing": 100
       },
-      "pluginVersion": "12.3.1",
+      "pluginVersion": "12.4.0-21377967493",
       "targets": [
         {
           "columns": [],
@@ -1621,7 +1955,171 @@
           "mappings": [
             {
               "options": {
+                "Intersight": {
+                  "color": "green",
+                  "index": 3
+                },
+                "UCSM": {
+                  "color": "orange",
+                  "index": 2
+                }
+              },
+              "type": "value"
+            },
+            {
+              "options": {
                 "pattern": "^.+M[789].*$",
+                "result": {
+                  "color": "blue",
+                  "index": 0
+                }
+              },
+              "type": "regex"
+            },
+            {
+              "options": {
+                "pattern": "^.+M[456].*$",
+                "result": {
+                  "color": "light-red",
+                  "index": 1
+                }
+              },
+              "type": "regex"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 41,
+        "w": 12,
+        "x": 12,
+        "y": 72
+      },
+      "id": 17,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "colorByField": "ManagementMode",
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [
+            "sum"
+          ],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "orientation": "horizontal",
+        "showValue": "auto",
+        "stacking": "none",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        },
+        "xField": "Model",
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 100
+      },
+      "pluginVersion": "12.4.0-21377967493",
+      "targets": [
+        {
+          "columns": [],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${Intersight_Data_Source}"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "Results",
+          "source": "url",
+          "type": "json",
+          "url": "/api/v1/compute/PhysicalSummaries?$apply=groupby((ManagementMode,Firmware,Model),aggregate($count as count))",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Server Firmware Version Count",
+      "transformations": [
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "count"
+              }
+            ]
+          }
+        },
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "count"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "${Intersight_Data_Source}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic-by-name"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "left",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "fieldMinMax": false,
+          "mappings": [
+            {
+              "options": {
+                "pattern": "Intersight",
                 "result": {
                   "color": "green",
                   "index": 0
@@ -1631,7 +2129,7 @@
             },
             {
               "options": {
-                "pattern": "^.+M[456].*$",
+                "pattern": "UCSM",
                 "result": {
                   "color": "orange",
                   "index": 1
@@ -1657,12 +2155,12 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 30,
+        "h": 11,
         "w": 12,
-        "x": 12,
-        "y": 53
+        "x": 0,
+        "y": 78
       },
-      "id": 17,
+      "id": 32,
       "options": {
         "barRadius": 0,
         "barWidth": 0.97,
@@ -1671,7 +2169,8 @@
         "groupWidth": 0.7,
         "legend": {
           "calcs": [
-            "sum"
+            "sum",
+            "count"
           ],
           "displayMode": "list",
           "placement": "bottom",
@@ -1687,9 +2186,9 @@
         },
         "xField": "Model",
         "xTickLabelRotation": 0,
-        "xTickLabelSpacing": 100
+        "xTickLabelSpacing": 200
       },
-      "pluginVersion": "12.3.1",
+      "pluginVersion": "12.4.0-21377967493",
       "targets": [
         {
           "columns": [],
@@ -1705,14 +2204,14 @@
           "root_selector": "Results",
           "source": "url",
           "type": "json",
-          "url": "/api/v1/compute/PhysicalSummaries?$apply=groupby((ManagementMode,Firmware,Model),aggregate($count as count))",
+          "url": "/api/v1/compute/PhysicalSummaries?$apply=groupby((Model), aggregate($count as count))",
           "url_options": {
             "data": "",
             "method": "GET"
           }
         }
       ],
-      "title": "Server Firmware Version Count",
+      "title": "Server Model Count",
       "transformations": [
         {
           "id": "sortBy",
@@ -1764,7 +2263,7 @@
           "mappings": [
             {
               "options": {
-                "pattern": "^.+M[789].*$",
+                "pattern": "Intersight",
                 "result": {
                   "color": "green",
                   "index": 0
@@ -1774,7 +2273,7 @@
             },
             {
               "options": {
-                "pattern": "^.+M[456].*$",
+                "pattern": "UCSM",
                 "result": {
                   "color": "orange",
                   "index": 1
@@ -1803,7 +2302,160 @@
         "h": 11,
         "w": 12,
         "x": 0,
-        "y": 59
+        "y": 89
+      },
+      "id": 34,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "colorByField": "ManagementMode",
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [
+            "sum",
+            "count"
+          ],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "orientation": "horizontal",
+        "showValue": "auto",
+        "stacking": "none",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        },
+        "xField": "Model",
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 200
+      },
+      "pluginVersion": "12.4.0-21377967493",
+      "targets": [
+        {
+          "columns": [],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${Intersight_Data_Source}"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "Results",
+          "source": "url",
+          "type": "json",
+          "url": "/api/v1/compute/PhysicalSummaries?$apply=groupby((Model,ManagementMode), aggregate($count as count))",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Server Management Mode",
+      "transformations": [
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "count"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "${Intersight_Data_Source}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic-by-name"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "left",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "fieldMinMax": false,
+          "mappings": [
+            {
+              "options": {
+                "^.+M[4].*$": {
+                  "color": "red",
+                  "index": 2
+                }
+              },
+              "type": "value"
+            },
+            {
+              "options": {
+                "pattern": "^.+M[789].*$",
+                "result": {
+                  "color": "green",
+                  "index": 0
+                }
+              },
+              "type": "regex"
+            },
+            {
+              "options": {
+                "pattern": "^.+M[56].*$",
+                "result": {
+                  "color": "orange",
+                  "index": 1
+                }
+              },
+              "type": "regex"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 12,
+        "x": 0,
+        "y": 100
       },
       "id": 2,
       "options": {
@@ -1833,7 +2485,7 @@
         "xTickLabelRotation": 0,
         "xTickLabelSpacing": 200
       },
-      "pluginVersion": "12.3.1",
+      "pluginVersion": "12.4.0-21377967493",
       "targets": [
         {
           "columns": [],
@@ -1856,7 +2508,7 @@
           }
         }
       ],
-      "title": "Server Models",
+      "title": "EOS/EOL Server Models",
       "transformations": [
         {
           "id": "sortBy",
@@ -1930,10 +2582,6 @@
               {
                 "color": "green",
                 "value": 0
-              },
-              {
-                "color": "red",
-                "value": 80
               }
             ]
           }
@@ -1941,10 +2589,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 13,
+        "h": 18,
         "w": 12,
         "x": 0,
-        "y": 70
+        "y": 111
       },
       "id": 16,
       "options": {
@@ -1973,7 +2621,7 @@
         "xTickLabelRotation": 0,
         "xTickLabelSpacing": 100
       },
-      "pluginVersion": "12.3.1",
+      "pluginVersion": "12.4.0-21377967493",
       "targets": [
         {
           "columns": [],
@@ -2088,14 +2736,14 @@
         "h": 6,
         "w": 24,
         "x": 0,
-        "y": 83
+        "y": 129
       },
       "id": 26,
       "options": {
         "cellHeight": "sm",
         "showHeader": true
       },
-      "pluginVersion": "12.3.1",
+      "pluginVersion": "12.4.0-21377967493",
       "targets": [
         {
           "columns": [],
@@ -2147,7 +2795,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 89
+        "y": 135
       },
       "id": 24,
       "panels": [],
@@ -2207,7 +2855,7 @@
         "h": 19,
         "w": 12,
         "x": 0,
-        "y": 90
+        "y": 136
       },
       "id": 10,
       "options": {
@@ -2236,7 +2884,7 @@
         "xTickLabelRotation": 0,
         "xTickLabelSpacing": 100
       },
-      "pluginVersion": "12.3.1",
+      "pluginVersion": "12.4.0-21377967493",
       "targets": [
         {
           "columns": [],
@@ -2348,7 +2996,7 @@
         "h": 19,
         "w": 12,
         "x": 12,
-        "y": 90
+        "y": 136
       },
       "id": 9,
       "options": {
@@ -2377,7 +3025,7 @@
         "xTickLabelRotation": 0,
         "xTickLabelSpacing": 100
       },
-      "pluginVersion": "12.3.1",
+      "pluginVersion": "12.4.0-21377967493",
       "targets": [
         {
           "columns": [],
@@ -2470,7 +3118,7 @@
         "h": 19,
         "w": 12,
         "x": 0,
-        "y": 109
+        "y": 155
       },
       "id": 13,
       "options": {
@@ -2499,7 +3147,7 @@
         "xTickLabelRotation": 0,
         "xTickLabelSpacing": 100
       },
-      "pluginVersion": "12.3.1",
+      "pluginVersion": "12.4.0-21377967493",
       "targets": [
         {
           "columns": [],
@@ -2598,20 +3246,21 @@
         "h": 33,
         "w": 12,
         "x": 12,
-        "y": 109
+        "y": 155
       },
       "id": 8,
       "options": {
         "barRadius": 0,
         "barWidth": 0.97,
-        "colorByField": "Pid",
+        "colorByField": "Model",
         "fullHighlight": false,
         "groupWidth": 0.7,
         "legend": {
           "calcs": [
-            "sum"
+            "sum",
+            "count"
           ],
-          "displayMode": "list",
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -2623,11 +3272,11 @@
           "mode": "single",
           "sort": "none"
         },
-        "xField": "Pid",
+        "xField": "Model",
         "xTickLabelRotation": 0,
         "xTickLabelSpacing": 100
       },
-      "pluginVersion": "12.3.1",
+      "pluginVersion": "12.4.0-21377967493",
       "targets": [
         {
           "columns": [],
@@ -2725,7 +3374,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 128
+        "y": 174
       },
       "id": 12,
       "options": {
@@ -2754,7 +3403,7 @@
         "xTickLabelRotation": 0,
         "xTickLabelSpacing": 200
       },
-      "pluginVersion": "12.3.1",
+      "pluginVersion": "12.4.0-21377967493",
       "targets": [
         {
           "columns": [],
@@ -2847,7 +3496,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 135
+        "y": 181
       },
       "id": 21,
       "options": {
@@ -2876,7 +3525,7 @@
         "xTickLabelRotation": 0,
         "xTickLabelSpacing": 200
       },
-      "pluginVersion": "12.3.1",
+      "pluginVersion": "12.4.0-21377967493",
       "targets": [
         {
           "columns": [],
@@ -2969,7 +3618,7 @@
         "h": 38,
         "w": 24,
         "x": 0,
-        "y": 142
+        "y": 188
       },
       "id": 25,
       "options": {
@@ -2999,7 +3648,7 @@
         "xTickLabelRotation": 0,
         "xTickLabelSpacing": 200
       },
-      "pluginVersion": "12.3.1",
+      "pluginVersion": "12.4.0-21377967493",
       "targets": [
         {
           "columns": [],
@@ -3075,7 +3724,8 @@
   },
   "timepicker": {},
   "timezone": "browser",
-  "title": "Intersight UCS Server Inventory Insights",
+  "title": "Intersight Inventory/Firmware Insights",
   "uid": "a79a43a8-9ef5-44b6-94d2-0e02886a5e9b",
-  "version": 1
+  "version": 35,
+  "weekStart": ""
 }
