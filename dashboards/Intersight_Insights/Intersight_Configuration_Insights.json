@@ -18,10 +18,1443 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 5,
+  "id": null,
   "links": [],
   "liveNow": true,
   "panels": [
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "${Intersight_Data_Source}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "footer": {
+              "reducers": []
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 33,
+      "options": {
+        "cellHeight": "sm",
+        "showHeader": true
+      },
+      "pluginVersion": "12.4.0-21377967493",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "Name",
+              "text": "",
+              "type": "string"
+            },
+            {
+              "selector": "SrcTemplate.Name",
+              "text": "SrcTemplateName",
+              "type": "string"
+            },
+            {
+              "selector": "TargetPlatform",
+              "text": "",
+              "type": "string"
+            },
+            {
+              "selector": "UuidPool.Name",
+              "text": "UuidPoolName",
+              "type": "string"
+            },
+            {
+              "selector": "PolicyBucket",
+              "text": "",
+              "type": "string"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${Intersight_Data_Source}"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "Results",
+          "source": "url",
+          "type": "json",
+          "url": "/api/v1/server/Profiles?$expand=UuidPool($select=Name),PolicyBucket($select=Name),SrcTemplate($select=Name)&$select=Name,PolicyBucket,SrcTemplate,TargetPlatform,UuidPool",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Server Policies",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "${Intersight_Data_Source}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true,
+            "footer": {
+              "reducers": []
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "NativeVlan"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 112
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "AllowedVlans"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 434
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "QinqEnabled"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 135
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "QinqVlan"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 124
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Description"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 234
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Name"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 360
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 24,
+        "x": 0,
+        "y": 7
+      },
+      "id": 31,
+      "options": {
+        "cellHeight": "sm",
+        "enablePagination": true,
+        "showHeader": true
+      },
+      "pluginVersion": "12.4.0-21377967493",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "Name",
+              "text": "",
+              "type": "string"
+            },
+            {
+              "selector": "Description",
+              "text": "",
+              "type": "string"
+            },
+            {
+              "selector": "VlanSettings.AllowedVlans",
+              "text": "AllowedVlans",
+              "type": "string"
+            },
+            {
+              "selector": "VlanSettings.NativeVlan",
+              "text": "NativeVlan",
+              "type": "number"
+            },
+            {
+              "selector": "VlanSettings.QinqEnabled",
+              "text": "QinqEnabled",
+              "type": "boolean"
+            },
+            {
+              "selector": "VlanSettings.QinqVlan",
+              "text": "QinqVlan",
+              "type": "number"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${Intersight_Data_Source}"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "Results",
+          "source": "url",
+          "type": "json",
+          "url": "/api/v1/fabric/EthNetworkGroupPolicies?$top=1000&$select=Name,Description,VlanSettings",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Network Group Policy",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {
+              "AllowedVlans": 3,
+              "Description": 1,
+              "Name": 0,
+              "NativeVlan": 2,
+              "QinqEnabled": 4,
+              "QinqVlan": 5
+            },
+            "renameByName": {}
+          }
+        },
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": false,
+                "field": "Name"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "${Intersight_Data_Source}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true,
+            "footer": {
+              "reducers": []
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "NativeVlan"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 112
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "AllowedVlans"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 376
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "QinqEnabled"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 135
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "QinqVlan"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 124
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Description"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 234
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Name"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 360
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 18
+      },
+      "id": 32,
+      "options": {
+        "cellHeight": "sm",
+        "enablePagination": true,
+        "showHeader": true
+      },
+      "pluginVersion": "12.4.0-21377967493",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "VlanSettings.AllowedVlans",
+              "text": "AllowedVlans",
+              "type": "string"
+            },
+            {
+              "selector": "count",
+              "text": "",
+              "type": "number"
+            },
+            {
+              "selector": "VlanSettings.NativeVlan",
+              "text": "NativeVlan",
+              "type": "number"
+            },
+            {
+              "selector": "VlanSettings.QinqEnabled",
+              "text": "QinqEnabled",
+              "type": "boolean"
+            },
+            {
+              "selector": "VlanSettings.QinqVlan",
+              "text": "QinqVlan",
+              "type": "number"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${Intersight_Data_Source}"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "Results",
+          "source": "url",
+          "type": "json",
+          "url": "/api/v1/fabric/EthNetworkGroupPolicies?$top=1000&$apply=groupby((VlanSettings), aggregate($count as count))",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Network Group Policy Summarization",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {
+              "AllowedVlans": 3,
+              "Description": 1,
+              "Name": 0,
+              "NativeVlan": 2,
+              "QinqEnabled": 4,
+              "QinqVlan": 5
+            },
+            "renameByName": {}
+          }
+        },
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "count"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "cfbdtn13gcxdsb"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "footer": {
+              "reducers": []
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 26
+      },
+      "id": 30,
+      "options": {
+        "cellHeight": "sm",
+        "showHeader": true
+      },
+      "pluginVersion": "12.4.0-21377967493",
+      "targets": [
+        {
+          "columns": [],
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "Results",
+          "source": "url",
+          "type": "json",
+          "url": "/api/v1/fabric/SwitchProfiles?$top=1000&$expand=AssignedSwitch($select=Serial,Model),PolicyBucket($select=Name,VlanPortOptimizationEnabled)&$select=AssignedSwitch,Name,PolicyBucket",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "VLAN Optimization In-progress",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "${Intersight_Data_Source}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "Incomplete": {
+                  "color": "red",
+                  "index": 0
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 34
+      },
+      "id": 28,
+      "options": {
+        "displayMode": "gradient",
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "maxVizHeight": 300,
+        "minVizHeight": 16,
+        "minVizWidth": 8,
+        "namePlacement": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [],
+          "fields": "/^count$/",
+          "values": true
+        },
+        "showUnfilled": false,
+        "sizing": "auto",
+        "valueMode": "text"
+      },
+      "pluginVersion": "12.4.0-21377967493",
+      "targets": [
+        {
+          "columns": [],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${Intersight_Data_Source}"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "Results",
+          "source": "url",
+          "type": "json",
+          "url": "/api/v1/view/Servers?$apply=groupby((CondHclStatus/Status), aggregate($count as count))",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "HCL Status",
+      "transformations": [
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "count"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "cfbdtn13gcxdsb"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true,
+            "footer": {
+              "reducers": []
+            },
+            "inspect": false
+          },
+          "mappings": [
+            {
+              "options": {
+                "Compatible": {
+                  "color": "green",
+                  "index": 3
+                },
+                "Incompatible-Components": {
+                  "color": "light-red",
+                  "index": 5
+                },
+                "Incomplete": {
+                  "color": "red",
+                  "index": 1
+                },
+                "Missing-Os-Info": {
+                  "color": "light-red",
+                  "index": 2
+                },
+                "Not-Evaluated": {
+                  "color": "red",
+                  "index": 4
+                },
+                "Validated": {
+                  "color": "green",
+                  "index": 0
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Status"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              },
+              {
+                "id": "custom.width",
+                "value": 91
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "HardwareStatus"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              },
+              {
+                "id": "custom.width",
+                "value": 136
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "SoftwareStatus"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ComponentStatus"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Reason"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              },
+              {
+                "id": "custom.width",
+                "value": 131
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Personality"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 125
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "HclOsVendor"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 133
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "HclOsVersion"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 134
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "count"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 74
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "InvModel"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 131
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 42
+      },
+      "id": 29,
+      "options": {
+        "cellHeight": "sm",
+        "enablePagination": true,
+        "showHeader": true
+      },
+      "pluginVersion": "12.4.0-21377967493",
+      "targets": [
+        {
+          "columns": [],
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "Results",
+          "source": "url",
+          "type": "json",
+          "url": "/api/v1/cond/HclStatuses?$apply=groupby((ManagementMode,Personality,HardwareStatus,SoftwareStatus,ComponentStatus,HclOsVendor,HclOsVersion,Reason,Status,InvModel), aggregate($count as count))",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "HCL Status Details",
+      "transformations": [
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "count"
+              }
+            ]
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {
+              "ComponentStatus": 6,
+              "HardwareStatus": 4,
+              "HclOsVendor": 2,
+              "HclOsVersion": 3,
+              "InvModel": 0,
+              "ManagementMode": 7,
+              "Personality": 1,
+              "Reason": 9,
+              "SoftwareStatus": 5,
+              "Status": 8,
+              "count": 10
+            },
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "${Intersight_Data_Source}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "shades"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true,
+            "footer": {
+              "reducers": []
+            },
+            "inspect": false
+          },
+          "mappings": [
+            {
+              "options": {
+                "Disabled": {
+                  "color": "red",
+                  "index": 1
+                },
+                "Enabled": {
+                  "color": "green",
+                  "index": 0
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "AdminState"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 50
+      },
+      "id": 23,
+      "options": {
+        "cellHeight": "sm",
+        "enablePagination": true,
+        "showHeader": true
+      },
+      "pluginVersion": "12.4.0-21377967493",
+      "targets": [
+        {
+          "columns": [],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${Intersight_Data_Source}"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "Results.($c := count; Classes.{\n  \"Name\": Name,\n  \"BandwidthPercent\": BandwidthPercent,\n  \"AdminState\": AdminState,\n  \"Cos\": Cos,\n  \"Mtu\": Mtu,\n  \"MulticastOptimize\": MulticastOptimize,\n  \"PacketDrop\": PacketDrop,\n  \"Weight\": Weight,\n  \"TotalCount\": $c\n})",
+          "source": "url",
+          "type": "json",
+          "url": "/api/v1/fabric/SystemQosPolicies?$top=1000&$apply=groupby((Classes), aggregate($count as count))",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Fabric QoS Configuration",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {
+              "AdminState": 1,
+              "BandwidthPercent": 5,
+              "Cos": 2,
+              "Mtu": 3,
+              "MulticastOptimize": 6,
+              "Name": 0,
+              "PacketDrop": 7,
+              "TotalCount": 8,
+              "Weight": 4
+            },
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "${Intersight_Data_Source}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "shades"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true,
+            "footer": {
+              "reducers": []
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 59
+      },
+      "id": 24,
+      "options": {
+        "cellHeight": "sm",
+        "enablePagination": true,
+        "showHeader": true
+      },
+      "pluginVersion": "12.4.0-21377967493",
+      "targets": [
+        {
+          "columns": [],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${Intersight_Data_Source}"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "Results",
+          "source": "url",
+          "type": "json",
+          "url": "/api/v1/vnic/EthQosPolicies?$top=1000&$apply=groupby((Mtu,Cos,Priority,Burst,RateLimit,TrustHostCos), aggregate($count as count))",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "vNIC QoS Configuration",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {
+              "Burst": 3,
+              "Cos": 1,
+              "Mtu": 2,
+              "Priority": 0,
+              "RateLimit": 4,
+              "TrustHostCos": 5,
+              "count": 6
+            },
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "${Intersight_Data_Source}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "fieldMinMax": false,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 66
+      },
+      "id": 27,
+      "options": {
+        "displayMode": "lcd",
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "maxVizHeight": 300,
+        "minVizHeight": 16,
+        "minVizWidth": 8,
+        "namePlacement": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [],
+          "fields": "/^count$/",
+          "values": true
+        },
+        "showUnfilled": true,
+        "sizing": "auto",
+        "valueMode": "color"
+      },
+      "pluginVersion": "12.4.0-21377967493",
+      "targets": [
+        {
+          "columns": [],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${Intersight_Data_Source}"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "Results",
+          "source": "url",
+          "type": "json",
+          "url": "/api/v1/power/Policies?$top=1000&$apply=groupby((RedundancyMode), aggregate($count as count)) ",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Power Redundancy Mode",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "${Intersight_Data_Source}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "shades"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true,
+            "footer": {
+              "reducers": []
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 75
+      },
+      "id": 26,
+      "options": {
+        "cellHeight": "sm",
+        "enablePagination": true,
+        "showHeader": true
+      },
+      "pluginVersion": "12.4.0-21377967493",
+      "targets": [
+        {
+          "columns": [],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${Intersight_Data_Source}"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "Results",
+          "source": "url",
+          "type": "json",
+          "url": "/api/v1/power/Policies?$top=1000&$apply=groupby((AllocatedBudget,RedundancyMode,DynamicRebalancing,ExtendedPowerCapacity,PowerPriority,PowerProfiling,PowerRestoreState,PowerSaveMode,ProcessorPackagePowerLimit), aggregate($count as count)) ",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Power Policy Details",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {
+              "AllocatedBudget": 2,
+              "DynamicRebalancing": 3,
+              "ExtendedPowerCapacity": 4,
+              "PowerPriority": 5,
+              "PowerProfiling": 6,
+              "PowerRestoreState": 7,
+              "PowerSaveMode": 8,
+              "ProcessorPackagePowerLimit": 9,
+              "RedundancyMode": 0,
+              "count": 1
+            },
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "${Intersight_Data_Source}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "footer": {
+              "reducers": []
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 82
+      },
+      "id": 1,
+      "options": {
+        "cellHeight": "sm",
+        "showHeader": true
+      },
+      "pluginVersion": "12.4.0-21377967493",
+      "targets": [
+        {
+          "columns": [],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${Intersight_Data_Source}"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "Results",
+          "source": "url",
+          "type": "json",
+          "url": "/api/v1/network/ElementSummaries?$filter=SwitchType eq FabricInterconnect&$apply=groupby((Model),aggregate(NumEtherPorts,NumEtherPortsConfigured,NumFcPorts,NumFcPortsConfigured,$count as count))",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "All FI Port Configuration Stats",
+      "transformations": [
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "count"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "table"
+    },
     {
       "datasource": {
         "type": "yesoreyeram-infinity-datasource",
@@ -70,9 +1503,9 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 0
+        "y": 89
       },
-      "id": 1,
+      "id": 22,
       "options": {
         "barRadius": 0,
         "barWidth": 0.97,
@@ -97,7 +1530,7 @@
         "xTickLabelRotation": 0,
         "xTickLabelSpacing": 0
       },
-      "pluginVersion": "12.3.1",
+      "pluginVersion": "12.4.0-21377967493",
       "targets": [
         {
           "columns": [
@@ -196,7 +1629,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 0
+        "y": 89
       },
       "id": 13,
       "options": {
@@ -223,7 +1656,7 @@
         "xTickLabelRotation": 0,
         "xTickLabelSpacing": 0
       },
-      "pluginVersion": "12.3.1",
+      "pluginVersion": "12.4.0-21377967493",
       "targets": [
         {
           "columns": [],
@@ -371,7 +1804,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 8
+        "y": 97
       },
       "id": 16,
       "options": {
@@ -399,7 +1832,7 @@
         "xTickLabelRotation": 0,
         "xTickLabelSpacing": 0
       },
-      "pluginVersion": "12.3.1",
+      "pluginVersion": "12.4.0-21377967493",
       "targets": [
         {
           "columns": [
@@ -503,7 +1936,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 8
+        "y": 97
       },
       "id": 15,
       "options": {
@@ -530,7 +1963,7 @@
         "xTickLabelRotation": 0,
         "xTickLabelSpacing": 0
       },
-      "pluginVersion": "12.3.1",
+      "pluginVersion": "12.4.0-21377967493",
       "targets": [
         {
           "columns": [],
@@ -627,7 +2060,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 16
+        "y": 105
       },
       "id": 3,
       "options": {
@@ -652,7 +2085,7 @@
         "xTickLabelRotation": 0,
         "xTickLabelSpacing": 0
       },
-      "pluginVersion": "12.3.1",
+      "pluginVersion": "12.4.0-21377967493",
       "targets": [
         {
           "columns": [],
@@ -745,7 +2178,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 16
+        "y": 105
       },
       "id": 2,
       "options": {
@@ -772,7 +2205,7 @@
         "xTickLabelRotation": 0,
         "xTickLabelSpacing": 0
       },
-      "pluginVersion": "12.3.1",
+      "pluginVersion": "12.4.0-21377967493",
       "targets": [
         {
           "columns": [],
@@ -797,7 +2230,7 @@
           "root_selector": "Results",
           "source": "url",
           "type": "json",
-          "url": "/api/v1/cond/Alarms?$filter=(Severity in ('Critical', 'Warning', 'Info') or Flapping eq 'NotFlapping') and (Acknowledge eq 'None') and (Suppressed eq false)&$apply=groupby((Severity),aggregate($count as count))",
+          "url": "/api/v1/cond/Alarms?$filter=(Severity in ('Critical', 'Warning', 'Info') and Flapping eq 'NotFlapping') and (Acknowledge eq 'None') and (Suppressed eq false)&$apply=groupby((Severity),aggregate($count as count))",
           "url_options": {
             "data": "",
             "method": "GET"
@@ -857,7 +2290,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               }
             ]
           }
@@ -868,7 +2302,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 24
+        "y": 113
       },
       "id": 17,
       "options": {
@@ -896,7 +2330,7 @@
         "xTickLabelRotation": 0,
         "xTickLabelSpacing": 100
       },
-      "pluginVersion": "12.0.0",
+      "pluginVersion": "12.4.0-21377967493",
       "targets": [
         {
           "columns": [],
@@ -981,7 +2415,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               }
             ]
           }
@@ -992,7 +2427,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 24
+        "y": 113
       },
       "id": 18,
       "options": {
@@ -1020,7 +2455,7 @@
         "xTickLabelRotation": 0,
         "xTickLabelSpacing": 100
       },
-      "pluginVersion": "12.0.0",
+      "pluginVersion": "12.4.0-21377967493",
       "targets": [
         {
           "columns": [],
@@ -1072,12 +2507,12 @@
     {
       "datasource": {
         "type": "yesoreyeram-infinity-datasource",
-        "uid": "${Intersight_Data_Source}"
+        "uid": "cfbdtn13gcxdsb"
       },
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "mode": "palette-classic"
           },
           "custom": {
             "axisBorderShow": false,
@@ -1108,7 +2543,7 @@
                   "index": 0
                 },
                 "Info": {
-                  "color": "green",
+                  "color": "blue",
                   "index": 2
                 },
                 "Warning": {
@@ -1123,7 +2558,12 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
               }
             ]
           }
@@ -1131,16 +2571,16 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 23,
+        "h": 21,
         "w": 24,
         "x": 0,
-        "y": 32
+        "y": 121
       },
-      "id": 20,
+      "id": 21,
       "options": {
         "barRadius": 0,
         "barWidth": 0.97,
-        "colorByField": "OrigSeverity",
+        "colorByField": "Severity",
         "fullHighlight": false,
         "groupWidth": 0.7,
         "legend": {
@@ -1161,32 +2601,19 @@
         "xTickLabelRotation": 0,
         "xTickLabelSpacing": 0
       },
-      "pluginVersion": "12.0.0",
+      "pluginVersion": "12.4.0-21377967493",
       "targets": [
         {
           "columns": [],
-          "datasource": {
-            "type": "yesoreyeram-infinity-datasource",
-            "uid": "${Intersight_Data_Source}"
-          },
           "filters": [],
           "format": "table",
           "global_query_id": "",
-          "pagination_max_pages": 1,
-          "pagination_mode": "offset",
-          "pagination_param_list_field_type": "query",
-          "pagination_param_offset_field_name": "$skip",
-          "pagination_param_offset_field_type": "query",
-          "pagination_param_offset_value": 0,
-          "pagination_param_size_field_name": "$top",
-          "pagination_param_size_field_type": "query",
-          "pagination_param_size_value": 1000,
           "parser": "backend",
           "refId": "A",
           "root_selector": "Results",
           "source": "url",
           "type": "json",
-          "url": "/api/v1/cond/Alarms?$filter=(Severity in ('Critical', 'Warning', 'Info')) and (Acknowledge eq 'None') and (Suppressed eq false)&$select=Name,Severity,OrigSeverity,Suppressed,MsAffectedObject,Code,Description,CreationTime,Flapping,FlappingCount,AffectedMoDisplayName,AffectedMoId",
+          "url": "/api/v1/cond/Alarms?$filter=(Severity in ('Critical', 'Warning', 'Info')) and (Acknowledge eq 'None') and (Suppressed eq false)&$apply=groupby((Code,Severity),aggregate($count as count))",
           "url_options": {
             "data": "",
             "method": "GET"
@@ -1196,56 +2623,13 @@
       "title": "Alarm Aggregation",
       "transformations": [
         {
-          "id": "filterFieldsByName",
-          "options": {
-            "include": {
-              "names": [
-                "Code",
-                "Severity",
-                "OrigSeverity"
-              ]
-            }
-          }
-        },
-        {
-          "id": "groupBy",
-          "options": {
-            "fields": {
-              "Code": {
-                "aggregations": [],
-                "operation": "groupby"
-              },
-              "CreationTime": {
-                "aggregations": [],
-                "operation": "groupby"
-              },
-              "Description": {
-                "aggregations": []
-              },
-              "Name": {
-                "aggregations": []
-              },
-              "OrigSeverity": {
-                "aggregations": [],
-                "operation": "groupby"
-              },
-              "Severity": {
-                "aggregations": [
-                  "count"
-                ],
-                "operation": "aggregate"
-              }
-            }
-          }
-        },
-        {
           "id": "sortBy",
           "options": {
             "fields": {},
             "sort": [
               {
                 "desc": true,
-                "field": "Severity (count)"
+                "field": "count"
               }
             ]
           }
@@ -1269,6 +2653,9 @@
               "type": "auto"
             },
             "filterable": true,
+            "footer": {
+              "reducers": []
+            },
             "inspect": false
           },
           "mappings": [
@@ -1298,7 +2685,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               }
             ]
           }
@@ -1330,7 +2718,7 @@
             "properties": [
               {
                 "id": "custom.width",
-                "value": 70
+                "value": 251
               }
             ]
           },
@@ -1355,9 +2743,12 @@
               {
                 "id": "custom.cellOptions",
                 "value": {
-                  "type": "color-text",
-                  "wrapText": false
+                  "type": "color-text"
                 }
+              },
+              {
+                "id": "custom.wrapText",
+                "value": false
               }
             ]
           }
@@ -1367,24 +2758,21 @@
         "h": 9,
         "w": 24,
         "x": 0,
-        "y": 55
+        "y": 142
       },
       "id": 19,
       "options": {
         "cellHeight": "sm",
-        "footer": {
-          "countRows": false,
-          "enablePagination": true,
-          "fields": "",
-          "reducer": [
-            "sum"
-          ],
-          "show": false
-        },
+        "enablePagination": true,
         "showHeader": true,
-        "sortBy": []
+        "sortBy": [
+          {
+            "desc": false,
+            "displayName": "Code"
+          }
+        ]
       },
-      "pluginVersion": "12.0.0",
+      "pluginVersion": "12.4.0-21377967493",
       "targets": [
         {
           "columns": [],
@@ -1489,6 +2877,9 @@
               "type": "auto"
             },
             "filterable": true,
+            "footer": {
+              "reducers": []
+            },
             "inspect": false
           },
           "mappings": [
@@ -1506,7 +2897,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -1548,25 +2940,16 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 64
+        "y": 151
       },
       "id": 12,
       "options": {
         "cellHeight": "sm",
         "enablePagination": true,
-        "footer": {
-          "countRows": false,
-          "enablePagination": true,
-          "fields": "",
-          "reducer": [
-            "sum"
-          ],
-          "show": false
-        },
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "12.0.0",
+      "pluginVersion": "12.4.0-21377967493",
       "targets": [
         {
           "columns": [],
@@ -1641,6 +3024,9 @@
               "type": "auto"
             },
             "filterable": true,
+            "footer": {
+              "reducers": []
+            },
             "inspect": false
           },
           "mappings": [],
@@ -1648,7 +3034,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -1760,25 +3147,16 @@
         "h": 15,
         "w": 24,
         "x": 0,
-        "y": 72
+        "y": 159
       },
       "id": 14,
       "options": {
         "cellHeight": "sm",
         "enablePagination": true,
-        "footer": {
-          "countRows": false,
-          "enablePagination": true,
-          "fields": "",
-          "reducer": [
-            "sum"
-          ],
-          "show": false
-        },
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "12.0.0",
+      "pluginVersion": "12.4.0-21377967493",
       "targets": [
         {
           "columns": [],
@@ -1799,7 +3177,7 @@
           "root_selector": "$map(Results, function($v){\n  {\n    \"Workflow_InstId\": $v.InstId,\n    \"Workflow_TraceId\": $v.TraceId,\n    \"Workflow_Message\": $v.Message.Message,\n    \"Workflow_Severity\": $v.Message.Severity,\n    \"Workflow_Name\": $v.Name,\n    \"Workflow_Src\": $v.Src,\n   \"Workflow_Moid\": $v.Moid,\n    \"Workflow_Status\": $v.Status,\n    \"Workflow_StartTime\": $v.StartTime,\n    \"Workflow_EndTime\": $v.EndTime,\n    \"TaskInfos\": $v.TaskInfos[Status = 'FAILED'].{\"Status\": Status,  \"InstId\": InstId, \"Moid\": Moid, \"RunningInstId\": RunningInstId, \"FailureReason\": FailureReason}\n  }\n})",
           "source": "url",
           "type": "json",
-          "url": "/api/v1/workflow/WorkflowInfos?$filter=Status eq 'FAILED'&$expand=TaskInfos($select=Name,Moid,Status,RunningInstId,InstId,FailureReason,StartTime,EndTime)&$select=AccountMoid,InstId,Name,Src,Moid,Message,StartTime,EndTime,Status,WorkflowStatus,TraceId,TaskInfos,Message&$orderby=StartTime desc",
+          "url": "/api/v1/workflow/WorkflowInfos?$filter=Status eq 'FAILED'&$expand=TaskInfos($select=Name,Moid,Status,RunningInstId,InstId,FailureReason,StartTime,EndTime)&$select=AccountMoid,InstId,Name,Src,Moid,Message,StartTime,EndTime,Status,WorkflowStatus,TraceId,TaskInfos,Message",
           "url_options": {
             "data": "",
             "method": "GET"
@@ -1881,6 +3259,9 @@
               "type": "auto"
             },
             "filterable": true,
+            "footer": {
+              "reducers": []
+            },
             "inspect": false
           },
           "mappings": [
@@ -1922,7 +3303,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -1953,21 +3335,12 @@
         "h": 14,
         "w": 24,
         "x": 0,
-        "y": 87
+        "y": 174
       },
       "id": 8,
       "options": {
         "cellHeight": "sm",
         "enablePagination": true,
-        "footer": {
-          "countRows": false,
-          "enablePagination": true,
-          "fields": "",
-          "reducer": [
-            "sum"
-          ],
-          "show": false
-        },
         "showHeader": true,
         "sortBy": [
           {
@@ -1976,7 +3349,7 @@
           }
         ]
       },
-      "pluginVersion": "12.0.0",
+      "pluginVersion": "12.4.0-21377967493",
       "targets": [
         {
           "columns": [],
@@ -2080,5 +3453,6 @@
   "timezone": "browser",
   "title": "Intersight Configuration Insights",
   "uid": "9cb2a2f8-c97b-42bc-aa68-cc945607b7d1",
-  "version": 2
+  "version": 41,
+  "weekStart": ""
 }
