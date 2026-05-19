@@ -1,0 +1,3055 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "${Intersight_Data_Source}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [
+            {
+              "options": {
+                "high": {
+                  "color": "red",
+                  "index": 2
+                },
+                "info": {
+                  "color": "blue",
+                  "index": 1
+                },
+                "medium": {
+                  "color": "orange",
+                  "index": 3
+                },
+                "na": {
+                  "color": "#808080",
+                  "index": 4
+                }
+              },
+              "type": "value"
+            },
+            {
+              "options": {
+                "pattern": "null",
+                "result": {
+                  "index": 0,
+                  "text": "\"securityAdvisory\""
+                }
+              },
+              "type": "regex"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 19,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "colorByField": "Severity Level",
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "orientation": "horizontal",
+        "showValue": "auto",
+        "stacking": "none",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        },
+        "xField": "AdvisoryId",
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "pluginVersion": "12.4.0-21377967493",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "Advisory.AdvisoryId",
+              "text": "AdvisoryId",
+              "type": "string"
+            },
+            {
+              "selector": "Advisory.Name",
+              "text": "Name",
+              "type": "string"
+            },
+            {
+              "selector": "Advisory.Severity.Level",
+              "text": "Severity Level",
+              "type": "string"
+            },
+            {
+              "selector": "Advisory.Type",
+              "text": "Type",
+              "type": "string"
+            },
+            {
+              "selector": "AffectedObject.Name",
+              "text": "Device Name",
+              "type": "string"
+            },
+            {
+              "selector": "AffectedObject.Serial",
+              "text": "Device Serial",
+              "type": "string"
+            },
+            {
+              "selector": "CreateTime",
+              "text": "",
+              "type": "string"
+            },
+            {
+              "selector": "ModTime",
+              "text": "",
+              "type": "string"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${Intersight_Data_Source}"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "Results",
+          "source": "url",
+          "type": "json",
+          "url": "/api/v1/tam/AdvisoryInstances?$top=1000&$expand=AffectedObject($select=Name,Serial),Advisory($select=AdvisoryId,Name,Type,Severity)&$select=Advisory,AffectedObject,State,CreateTime,ModTime",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Advisory Summarization Chart",
+      "transformations": [
+        {
+          "disabled": true,
+          "id": "convertFieldType",
+          "options": {
+            "conversions": [
+              {
+                "destinationType": "string",
+                "targetField": "Type"
+              }
+            ],
+            "fields": {}
+          }
+        },
+        {
+          "disabled": true,
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {
+              "AdvisoryId": 2,
+              "Device Name": 4,
+              "Device Serial": 5,
+              "Name": 3,
+              "Severity Level": 1,
+              "Type": 0
+            },
+            "renameByName": {}
+          }
+        },
+        {
+          "disabled": true,
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "AdvisoryId": {
+                "aggregations": []
+              },
+              "CreateTime": {
+                "aggregations": [
+                  "count"
+                ],
+                "operation": "groupby"
+              },
+              "Severity Level": {
+                "aggregations": [
+                  "count"
+                ]
+              },
+              "Type": {
+                "aggregations": [
+                  "count"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "disabled": true,
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "Type (count)"
+              }
+            ]
+          }
+        },
+        {
+          "id": "convertFieldType",
+          "options": {
+            "conversions": [
+              {
+                "dateFormat": "",
+                "destinationType": "time",
+                "enumConfig": {
+                  "text": [
+                    "2023-10-03T22:14:49.45Z",
+                    "2023-10-03T22:14:49.664Z",
+                    "2023-10-03T22:14:49.728Z",
+                    "2023-10-05T00:10:54.814Z",
+                    "2024-07-17T15:01:28.841Z",
+                    "2024-07-17T22:25:30.482Z",
+                    "2024-07-17T22:59:53.362Z",
+                    "2024-07-17T23:06:33.963Z",
+                    "2024-07-17T23:11:48.34Z",
+                    "2024-07-18T15:52:06.71Z",
+                    "2024-07-18T16:20:25.679Z",
+                    "2024-07-18T16:29:43.31Z",
+                    "2024-07-18T16:36:28.343Z",
+                    "2024-07-19T21:28:45.48Z",
+                    "2024-07-19T21:50:39.559Z",
+                    "2024-07-19T21:56:39.104Z",
+                    "2024-07-19T22:03:18.782Z",
+                    "2024-07-20T21:45:31.277Z",
+                    "2024-07-20T22:18:25.904Z",
+                    "2024-07-20T22:26:52.223Z",
+                    "2024-07-20T22:33:30.335Z",
+                    "2024-07-21T05:41:53.734Z",
+                    "2024-07-21T08:07:06.61Z",
+                    "2024-07-21T08:12:19.866Z",
+                    "2024-07-21T08:17:04.769Z",
+                    "2024-07-22T01:33:34.49Z",
+                    "2024-07-22T01:34:45.832Z",
+                    "2024-07-22T01:49:43.499Z",
+                    "2024-07-22T01:55:45.815Z",
+                    "2024-07-22T01:56:52.25Z",
+                    "2024-07-22T01:57:21.606Z",
+                    "2024-07-22T02:00:07.376Z",
+                    "2024-07-22T02:01:12.712Z",
+                    "2024-07-22T02:01:40.091Z",
+                    "2024-07-22T02:05:55.908Z",
+                    "2024-07-22T05:51:17.986Z",
+                    "2024-07-22T06:01:07.4Z",
+                    "2024-07-22T06:09:09.207Z",
+                    "2024-07-22T06:14:02.088Z",
+                    "2024-08-03T16:06:46.715Z",
+                    "2024-08-03T17:44:26.481Z",
+                    "2024-08-04T17:54:51.511Z",
+                    "2024-08-05T02:31:22.605Z",
+                    "2024-08-05T04:09:18.311Z",
+                    "2024-08-05T17:41:17.513Z",
+                    "2024-08-05T17:41:41.406Z",
+                    "2024-08-06T00:32:14.229Z",
+                    "2024-08-06T00:32:28.684Z",
+                    "2024-08-06T04:13:00.186Z",
+                    "2024-08-06T04:13:00.307Z",
+                    "2024-08-06T04:13:00.369Z",
+                    "2024-08-06T04:13:00.543Z",
+                    "2024-08-06T04:13:02.277Z",
+                    "2024-08-06T10:04:53.148Z",
+                    "2024-08-06T10:41:23.657Z",
+                    "2024-08-06T10:41:23.891Z",
+                    "2024-08-06T10:41:24.369Z",
+                    "2024-08-06T10:41:24.983Z",
+                    "2024-08-06T10:41:25.546Z",
+                    "2024-08-06T10:59:25.593Z",
+                    "2024-08-06T11:00:49.163Z",
+                    "2024-08-06T11:00:49.223Z",
+                    "2024-08-06T11:00:49.281Z",
+                    "2024-08-06T11:00:49.829Z",
+                    "2024-08-06T11:00:52.165Z",
+                    "2024-08-06T11:39:46.332Z",
+                    "2024-09-05T21:01:49.289Z",
+                    "2024-09-05T21:01:58.434Z",
+                    "2024-09-05T21:02:36.847Z",
+                    "2024-09-05T21:02:36.92Z",
+                    "2024-10-08T12:50:24.379Z",
+                    "2024-10-08T12:54:50.956Z",
+                    "2024-10-08T12:55:59.919Z",
+                    "2024-10-08T13:01:38.835Z",
+                    "2024-10-08T13:05:49.778Z",
+                    "2024-10-08T13:08:11.962Z",
+                    "2024-10-08T13:11:28.328Z",
+                    "2024-10-08T13:11:36.377Z",
+                    "2024-10-08T13:12:20.492Z",
+                    "2024-10-08T13:12:36.392Z",
+                    "2024-10-08T13:12:43.78Z",
+                    "2024-10-08T13:14:24.315Z",
+                    "2024-10-08T13:15:00.954Z",
+                    "2024-10-08T13:15:25.772Z",
+                    "2024-10-08T13:15:56.643Z",
+                    "2024-10-08T13:16:03.907Z",
+                    "2024-10-08T13:17:54.537Z",
+                    "2024-10-08T13:19:03.006Z",
+                    "2024-10-08T13:19:11.012Z",
+                    "2024-10-08T13:19:35.063Z",
+                    "2024-10-08T13:21:47.072Z",
+                    "2024-10-08T16:50:23.032Z",
+                    "2024-10-18T16:22:42.407Z",
+                    "2024-10-18T16:26:47.969Z",
+                    "2024-10-18T16:28:27.685Z",
+                    "2024-10-18T16:28:58.998Z",
+                    "2024-10-18T16:32:45.612Z",
+                    "2024-12-18T23:00:15.277Z",
+                    "2024-12-18T23:00:23.185Z",
+                    "2024-12-18T23:02:31.999Z",
+                    "2024-12-18T23:02:32.061Z",
+                    "2025-02-20T23:01:50.991Z",
+                    "2025-02-20T23:03:51.955Z",
+                    "2025-02-20T23:12:49.11Z",
+                    "2025-02-20T23:19:47.682Z",
+                    "2025-04-18T13:34:30.5Z",
+                    "2025-04-20T08:41:06.357Z",
+                    "2025-04-20T08:41:08.901Z",
+                    "2025-05-01T22:43:24.465Z",
+                    "2025-05-01T22:44:39.194Z",
+                    "2025-05-01T22:46:11.304Z",
+                    "2025-05-01T22:46:27.309Z",
+                    "2025-05-01T22:46:33.3Z",
+                    "2025-05-01T22:47:12.964Z",
+                    "2025-05-01T22:47:27.924Z",
+                    "2025-05-01T22:47:35.64Z",
+                    "2025-05-01T22:47:42.142Z",
+                    "2025-05-01T22:49:43.461Z",
+                    "2025-05-01T22:50:05.716Z",
+                    "2025-05-01T22:50:36.352Z",
+                    "2025-05-01T22:50:57.541Z",
+                    "2025-05-01T22:52:28.132Z",
+                    "2025-05-01T22:53:27.142Z",
+                    "2025-05-01T22:55:49.578Z",
+                    "2025-05-14T23:49:19.997Z",
+                    "2025-05-15T00:07:34.747Z",
+                    "2025-05-15T00:16:42.238Z",
+                    "2025-05-15T00:19:24.921Z",
+                    "2025-05-15T00:22:19.545Z",
+                    "2025-05-25T00:54:11.335Z",
+                    "2025-05-25T00:54:14.778Z",
+                    "2025-05-25T00:54:15.03Z",
+                    "2025-05-25T00:54:15.122Z",
+                    "2025-05-25T00:54:15.205Z",
+                    "2025-06-18T09:53:54.505Z",
+                    "2025-06-19T07:27:24.815Z",
+                    "2025-06-19T07:28:58.764Z",
+                    "2025-06-19T07:33:42.619Z",
+                    "2025-06-19T07:34:35.357Z",
+                    "2025-07-10T18:38:27.77Z",
+                    "2025-07-10T18:39:42.295Z",
+                    "2025-07-10T18:43:09.981Z",
+                    "2025-07-10T19:20:08.502Z",
+                    "2025-07-10T19:21:04.31Z",
+                    "2025-07-10T19:21:04.444Z",
+                    "2025-07-10T19:21:04.503Z",
+                    "2025-07-10T19:21:04.563Z",
+                    "2025-07-10T19:22:59.742Z",
+                    "2025-07-10T19:23:00.97Z",
+                    "2025-07-10T19:23:01.035Z",
+                    "2025-07-10T19:23:01.101Z",
+                    "2025-07-10T19:23:52.459Z",
+                    "2025-07-10T19:28:34.012Z",
+                    "2025-07-10T19:28:34.19Z",
+                    "2025-07-10T19:28:34.262Z",
+                    "2025-07-10T19:30:24.305Z",
+                    "2025-07-10T19:30:24.427Z",
+                    "2025-07-10T19:31:17.511Z",
+                    "2025-07-10T19:36:23.324Z",
+                    "2025-07-10T19:38:08.055Z",
+                    "2025-07-10T19:38:08.115Z",
+                    "2025-07-10T19:40:53.256Z",
+                    "2025-07-10T19:41:02.049Z",
+                    "2025-07-14T23:09:05.302Z",
+                    "2025-07-14T23:14:06.907Z",
+                    "2025-08-19T17:24:31.54Z",
+                    "2025-08-19T20:51:27.732Z",
+                    "2025-08-19T20:51:29.435Z",
+                    "2025-08-19T20:51:31.092Z",
+                    "2025-08-19T22:38:45.163Z",
+                    "2025-08-19T22:55:50.33Z",
+                    "2025-08-19T23:18:29.381Z",
+                    "2025-09-10T13:06:01.743Z",
+                    "2025-09-10T13:06:20.14Z",
+                    "2025-09-10T13:11:28.401Z",
+                    "2025-09-10T13:11:28.463Z",
+                    "2025-09-10T13:33:03.147Z",
+                    "2025-09-10T13:33:29.508Z",
+                    "2025-09-10T13:39:27.1Z",
+                    "2025-09-10T13:40:53.934Z",
+                    "2025-09-10T13:43:26.757Z",
+                    "2025-09-10T13:43:35.993Z",
+                    "2025-09-10T13:44:57.357Z",
+                    "2025-09-10T14:05:06.884Z",
+                    "2025-09-10T14:10:03.779Z",
+                    "2025-09-10T14:12:26.374Z",
+                    "2025-09-10T14:13:14.606Z",
+                    "2025-09-10T14:18:50.739Z",
+                    "2025-09-10T14:35:57.201Z",
+                    "2025-09-10T14:36:38.45Z",
+                    "2025-09-10T14:39:50.071Z",
+                    "2025-09-10T19:15:17.833Z",
+                    "2025-09-10T19:33:00.653Z",
+                    "2025-09-10T19:43:16.2Z",
+                    "2025-09-11T00:26:45.615Z",
+                    "2025-09-11T00:27:10.217Z",
+                    "2025-09-11T00:36:25.949Z",
+                    "2025-09-19T17:23:47.162Z",
+                    "2025-09-19T17:23:56.132Z",
+                    "2025-09-19T17:25:21.989Z",
+                    "2025-09-19T17:25:22.05Z",
+                    "2025-09-19T17:41:31.363Z",
+                    "2025-09-19T17:41:39.865Z",
+                    "2025-09-19T17:42:59.075Z",
+                    "2025-09-19T17:42:59.132Z",
+                    "2025-09-19T18:01:55.671Z",
+                    "2025-09-19T18:02:09.354Z",
+                    "2025-09-19T18:04:14.099Z",
+                    "2025-09-19T18:04:14.156Z",
+                    "2025-09-19T18:16:49.342Z",
+                    "2025-09-19T18:17:02.42Z",
+                    "2025-09-19T18:19:00.113Z",
+                    "2025-09-19T18:19:00.173Z",
+                    "2025-09-19T18:34:45.994Z",
+                    "2025-09-19T18:35:03.858Z",
+                    "2025-09-19T18:37:49.194Z",
+                    "2025-09-19T18:37:49.256Z",
+                    "2025-09-19T19:00:30.24Z",
+                    "2025-09-19T19:01:45.062Z",
+                    "2025-09-19T19:04:27.578Z",
+                    "2025-09-19T19:04:51.64Z",
+                    "2025-09-19T19:10:34.052Z",
+                    "2025-09-19T19:10:43.943Z",
+                    "2025-09-19T19:10:58.327Z",
+                    "2025-09-19T19:28:58.521Z",
+                    "2025-09-19T19:36:30.068Z",
+                    "2025-09-19T19:38:45.963Z",
+                    "2025-09-19T19:39:31.407Z",
+                    "2025-09-19T19:44:52.154Z",
+                    "2025-09-19T19:59:57.561Z",
+                    "2025-09-19T20:00:38.373Z",
+                    "2025-09-19T20:05:40.579Z",
+                    "2025-09-20T01:38:41.691Z",
+                    "2025-09-20T01:39:59.013Z",
+                    "2025-09-20T01:44:37.565Z",
+                    "2025-09-20T02:00:43.849Z",
+                    "2025-09-20T02:10:31.353Z",
+                    "2025-09-20T08:06:16.158Z",
+                    "2025-09-30T00:16:51.078Z",
+                    "2025-09-30T00:24:24.979Z",
+                    "2025-09-30T06:04:47.83Z",
+                    "2025-09-30T06:23:36.017Z",
+                    "2025-09-30T06:51:54.046Z",
+                    "2025-09-30T07:22:22.226Z",
+                    "2025-10-24T20:24:07.88Z",
+                    "2025-10-24T20:24:08.99Z",
+                    "2025-10-24T20:24:29.987Z",
+                    "2025-10-24T20:24:32.711Z",
+                    "2025-10-24T20:24:38.082Z",
+                    "2025-10-24T20:43:09.152Z",
+                    "2025-10-24T20:46:54.963Z",
+                    "2025-10-24T21:06:01.862Z",
+                    "2025-10-24T21:20:52.318Z",
+                    "2025-12-09T19:20:39.352Z",
+                    "2025-12-09T19:44:33.803Z",
+                    "2025-12-09T20:10:47.389Z",
+                    "2025-12-09T20:10:47.699Z",
+                    "2025-12-09T20:10:48.958Z",
+                    "2025-12-09T20:10:49.255Z",
+                    "2025-12-09T20:31:05.834Z",
+                    "2025-12-09T20:31:36.117Z",
+                    "2025-12-09T20:43:33.719Z",
+                    "2025-12-09T20:44:02.395Z",
+                    "2025-12-09T21:19:39.773Z",
+                    "2025-12-09T21:19:40.056Z",
+                    "2025-12-09T21:19:40.121Z",
+                    "2025-12-09T21:19:41.46Z",
+                    "2025-12-09T21:19:41.522Z",
+                    "2025-12-09T21:19:41.585Z",
+                    "2025-12-09T21:26:56.133Z",
+                    "2025-12-09T21:40:43.727Z",
+                    "2025-12-09T21:53:38.518Z",
+                    "2025-12-11T20:58:48.447Z",
+                    "2025-12-11T20:58:49.805Z",
+                    "2025-12-15T21:12:08.057Z",
+                    "2025-12-15T21:12:08.214Z",
+                    "2025-12-15T21:20:44.172Z",
+                    "2025-12-15T21:20:44.219Z",
+                    "2025-12-15T21:20:44.277Z",
+                    "2025-12-15T21:20:44.323Z",
+                    "2025-12-15T21:20:44.363Z"
+                  ]
+                },
+                "targetField": "CreateTime"
+              }
+            ],
+            "fields": {}
+          }
+        }
+      ],
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "${Intersight_Data_Source}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [
+            {
+              "options": {
+                "high": {
+                  "color": "red",
+                  "index": 2
+                },
+                "info": {
+                  "color": "blue",
+                  "index": 1
+                },
+                "medium": {
+                  "color": "orange",
+                  "index": 3
+                },
+                "na": {
+                  "color": "#808080",
+                  "index": 4
+                }
+              },
+              "type": "value"
+            },
+            {
+              "options": {
+                "pattern": "null",
+                "result": {
+                  "index": 0,
+                  "text": "\"securityAdvisory\""
+                }
+              },
+              "type": "regex"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 24,
+        "x": 0,
+        "y": 14
+      },
+      "id": 21,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "colorByField": "Severity Level",
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "orientation": "horizontal",
+        "showValue": "auto",
+        "stacking": "none",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        },
+        "xField": "AdvisoryId",
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "pluginVersion": "12.4.0-21377967493",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "Advisory.AdvisoryId",
+              "text": "AdvisoryId",
+              "type": "string"
+            },
+            {
+              "selector": "Advisory.Name",
+              "text": "Name",
+              "type": "string"
+            },
+            {
+              "selector": "Advisory.Severity.Level",
+              "text": "Severity Level",
+              "type": "string"
+            },
+            {
+              "selector": "Advisory.Type",
+              "text": "Type",
+              "type": "string"
+            },
+            {
+              "selector": "AffectedObject.Name",
+              "text": "Device Name",
+              "type": "string"
+            },
+            {
+              "selector": "AffectedObject.Serial",
+              "text": "Device Serial",
+              "type": "string"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${Intersight_Data_Source}"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "Results",
+          "source": "url",
+          "type": "json",
+          "url": "/api/v1/tam/AdvisoryInstances?$top=1000&$expand=AffectedObject($select=Name,Serial),Advisory($select=AdvisoryId,Name,Type,Severity)&$select=Advisory,AffectedObject,State",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Advisory Summarization Chart",
+      "transformations": [
+        {
+          "id": "convertFieldType",
+          "options": {
+            "conversions": [
+              {
+                "destinationType": "string",
+                "targetField": "Type"
+              }
+            ],
+            "fields": {}
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {
+              "AdvisoryId": 2,
+              "Device Name": 4,
+              "Device Serial": 5,
+              "Name": 3,
+              "Severity Level": 1,
+              "Type": 0
+            },
+            "renameByName": {}
+          }
+        },
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "AdvisoryId": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "Severity Level": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "Type": {
+                "aggregations": [
+                  "count"
+                ],
+                "operation": "groupby"
+              }
+            }
+          }
+        },
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "Type (count)"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "ffcfdobkhbrb4c"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true,
+            "footer": {
+              "reducers": []
+            },
+            "inspect": false
+          },
+          "mappings": [
+            {
+              "options": {
+                "high": {
+                  "color": "red",
+                  "index": 2
+                },
+                "info": {
+                  "color": "blue",
+                  "index": 1
+                },
+                "medium": {
+                  "color": "orange",
+                  "index": 3
+                },
+                "na": {
+                  "color": "#808080",
+                  "index": 4
+                }
+              },
+              "type": "value"
+            },
+            {
+              "options": {
+                "pattern": "null",
+                "result": {
+                  "index": 0,
+                  "text": "\"securityAdvisory\""
+                }
+              },
+              "type": "regex"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Type"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 326
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Severity Level"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 24,
+        "x": 0,
+        "y": 28
+      },
+      "id": 20,
+      "options": {
+        "cellHeight": "sm",
+        "enablePagination": true,
+        "showHeader": true
+      },
+      "pluginVersion": "12.4.0-21377967493",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "Advisory.AdvisoryId",
+              "text": "AdvisoryId",
+              "type": "string"
+            },
+            {
+              "selector": "Advisory.Name",
+              "text": "Name",
+              "type": "string"
+            },
+            {
+              "selector": "Advisory.Severity.Level",
+              "text": "Severity Level",
+              "type": "string"
+            },
+            {
+              "selector": "Advisory.Type",
+              "text": "Type",
+              "type": "string"
+            },
+            {
+              "selector": "AffectedObject.Name",
+              "text": "Device Name",
+              "type": "string"
+            },
+            {
+              "selector": "AffectedObject.Serial",
+              "text": "Device Serial",
+              "type": "string"
+            }
+          ],
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "Results",
+          "source": "url",
+          "type": "json",
+          "url": "/api/v1/tam/AdvisoryInstances?$top=1000&$expand=AffectedObject($select=Name,Serial),Advisory($select=AdvisoryId,Name,Type,Severity)&$select=Advisory,AffectedObject,State",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Advisory Summarization",
+      "transformations": [
+        {
+          "id": "convertFieldType",
+          "options": {
+            "conversions": [
+              {
+                "destinationType": "string",
+                "targetField": "Type"
+              }
+            ],
+            "fields": {}
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {
+              "AdvisoryId": 2,
+              "Device Name": 4,
+              "Device Serial": 5,
+              "Name": 3,
+              "Severity Level": 1,
+              "Type": 0
+            },
+            "renameByName": {}
+          }
+        },
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "AdvisoryId": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "Severity Level": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "Type": {
+                "aggregations": [
+                  "count"
+                ],
+                "operation": "groupby"
+              }
+            }
+          }
+        },
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "Type (count)"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "${Intersight_Data_Source}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "footer": {
+              "reducers": []
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 24,
+        "x": 0,
+        "y": 39
+      },
+      "id": 16,
+      "options": {
+        "cellHeight": "sm",
+        "showHeader": true
+      },
+      "pluginVersion": "12.4.0-21377967493",
+      "targets": [
+        {
+          "columns": [],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${Intersight_Data_Source}"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "Results.Tags",
+          "source": "url",
+          "type": "json",
+          "url": "/api/v1/iam/Accounts?$select=Name,Tags",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Account AutoRMA Configuration",
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "Key",
+                "A"
+              ]
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "${Intersight_Data_Source}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "footer": {
+              "reducers": []
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 44
+      },
+      "id": 17,
+      "options": {
+        "cellHeight": "sm",
+        "showHeader": true
+      },
+      "pluginVersion": "12.4.0-21377967493",
+      "targets": [
+        {
+          "columns": [],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${Intersight_Data_Source}"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "Results",
+          "source": "url",
+          "type": "json",
+          "url": "/api/v1/organization/Organizations?$select=Name,Tags",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Org AutoRMA Tags",
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "Name",
+                "Tags"
+              ]
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 51
+      },
+      "id": 11,
+      "panels": [],
+      "title": "Server Health Stats",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "uid": "${Intersight_Data_Source}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [
+            {
+              "options": {
+                "Critical": {
+                  "color": "red",
+                  "index": 1
+                },
+                "Healthy": {
+                  "color": "green",
+                  "index": 0
+                },
+                "Warning": {
+                  "color": "orange",
+                  "index": 2
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 52
+      },
+      "id": 3,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "colorByField": "ServerHealth",
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [
+            "count"
+          ],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "orientation": "horizontal",
+        "showValue": "auto",
+        "stacking": "none",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        },
+        "xField": "ServerHealth",
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "pluginVersion": "12.4.0-21377967493",
+      "targets": [
+        {
+          "columns": [],
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "Results",
+          "source": "url",
+          "type": "json",
+          "url": "/api/v1/view/Servers?$apply=groupby((ServerHealth), aggregate($count as count))",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Server Health Status",
+      "transformations": [
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "count"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "uid": "${Intersight_Data_Source}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [
+            {
+              "options": {
+                "off": {
+                  "color": "red",
+                  "index": 1
+                },
+                "on": {
+                  "color": "green",
+                  "index": 0
+                },
+                "unknown": {
+                  "color": "orange",
+                  "index": 2
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 52
+      },
+      "id": 4,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "colorByField": "OperPowerState",
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [
+            "count"
+          ],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "orientation": "horizontal",
+        "showValue": "auto",
+        "stacking": "none",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        },
+        "xField": "OperPowerState",
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "pluginVersion": "12.4.0-21377967493",
+      "targets": [
+        {
+          "columns": [],
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "Results",
+          "source": "url",
+          "type": "json",
+          "url": "/api/v1/view/Servers?$apply=groupby((OperPowerState), aggregate($count as count))",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Server Power Status",
+      "transformations": [
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "count"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "uid": "${Intersight_Data_Source}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [
+            {
+              "options": {
+                "Active": {
+                  "color": "green",
+                  "index": 0
+                },
+                "None": {
+                  "color": "#8AB8FF",
+                  "index": 1
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 61
+      },
+      "id": 7,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "colorByField": "Lifecycle",
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [
+            "count"
+          ],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "orientation": "horizontal",
+        "showValue": "auto",
+        "stacking": "none",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        },
+        "xField": "Lifecycle",
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "pluginVersion": "12.4.0-21377967493",
+      "targets": [
+        {
+          "columns": [],
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "Results",
+          "source": "url",
+          "type": "json",
+          "url": "/api/v1/view/Servers?$apply=groupby((Lifecycle), aggregate($count as count))",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Server Lifecycle Status",
+      "transformations": [
+        {
+          "disabled": true,
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "count"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "uid": "${Intersight_Data_Source}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "color": "red",
+                  "index": 0,
+                  "text": "Null"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 61
+      },
+      "id": 6,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "colorByField": "Version",
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [
+            "count",
+            "sum"
+          ],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "orientation": "horizontal",
+        "showValue": "auto",
+        "stacking": "none",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        },
+        "xField": "Version",
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "pluginVersion": "12.4.0-21377967493",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "Bmc/RunningFirmware.0.Version",
+              "text": "Version",
+              "type": "string"
+            }
+          ],
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "Results",
+          "source": "url",
+          "type": "json",
+          "url": "/api/v1/view/Servers?$apply=groupby((Bmc/RunningFirmware), aggregate($count as count))",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Server Firmware Version",
+      "transformations": [
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "Version": {
+                "aggregations": [
+                  "count"
+                ],
+                "operation": "groupby"
+              }
+            }
+          }
+        },
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "Version (count)"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "uid": "${Intersight_Data_Source}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [
+            {
+              "options": {
+                "Associated": {
+                  "color": "green",
+                  "index": 0
+                },
+                "Not-assigned": {
+                  "color": "#8AB8FF",
+                  "index": 1
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 70
+      },
+      "id": 8,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "colorByField": "ConfigContext/ConfigStateSummary",
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [
+            "count"
+          ],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "orientation": "horizontal",
+        "showValue": "auto",
+        "stacking": "none",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        },
+        "xField": "ConfigContext/ConfigStateSummary",
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "pluginVersion": "12.4.0-21377967493",
+      "targets": [
+        {
+          "columns": [],
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "Results",
+          "source": "url",
+          "type": "json",
+          "url": "/api/v1/server/Profiles?$apply=groupby((ConfigContext/ConfigStateSummary), aggregate($count as count))",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Server Profile Status",
+      "transformations": [
+        {
+          "disabled": true,
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "count"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "uid": "${Intersight_Data_Source}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "index": 0,
+                  "text": "Null"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 70
+      },
+      "id": 10,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "colorByField": "Version",
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [
+            "count",
+            "sum"
+          ],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "orientation": "horizontal",
+        "showValue": "auto",
+        "stacking": "none",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        },
+        "xField": "PackageVersion",
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "pluginVersion": "12.4.0-21377967493",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "Bmc/RunningFirmware.0.PackageVersion",
+              "text": "PackageVersion",
+              "type": "string"
+            }
+          ],
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "Results",
+          "source": "url",
+          "type": "json",
+          "url": "/api/v1/view/Servers?$apply=groupby((Bmc/RunningFirmware), aggregate($count as count))",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Server Package Version",
+      "transformations": [
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "PackageVersion": {
+                "aggregations": [
+                  "count"
+                ],
+                "operation": "groupby"
+              },
+              "Version": {
+                "aggregations": [
+                  "count"
+                ],
+                "operation": "groupby"
+              }
+            }
+          }
+        },
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "PackageVersion (count)"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "uid": "${Intersight_Data_Source}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [
+            {
+              "options": {
+                "Intersight": {
+                  "color": "green",
+                  "index": 0
+                },
+                "UCSM": {
+                  "color": "orange",
+                  "index": 1
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 79
+      },
+      "id": 12,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "colorByField": "ManagementMode",
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [
+            "count"
+          ],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "orientation": "horizontal",
+        "showValue": "auto",
+        "stacking": "none",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        },
+        "xField": "EthernetSwitchingMode",
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "pluginVersion": "12.4.0-21377967493",
+      "targets": [
+        {
+          "columns": [],
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "Results",
+          "source": "url",
+          "type": "json",
+          "url": "/api/v1/network/Elements?$apply=groupby((ManagementMode,EthernetSwitchingMode,FcSwitchingMode), aggregate($count as count))",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "FI Ethernet/FC Mode",
+      "transformations": [
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "count"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "uid": "${Intersight_Data_Source}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [
+            {
+              "options": {
+                "Active": {
+                  "color": "green",
+                  "index": 0
+                },
+                "Not Covered": {
+                  "color": "red",
+                  "index": 1
+                }
+              },
+              "type": "value"
+            },
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "color": "yellow",
+                  "index": 2,
+                  "text": "Null"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 79
+      },
+      "id": 9,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "colorByField": "AssetDeviceContractInformation/ContractStatus",
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [
+            "count"
+          ],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "orientation": "horizontal",
+        "showValue": "auto",
+        "stacking": "none",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        },
+        "xField": "AssetDeviceContractInformation/ContractStatus",
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "pluginVersion": "12.4.0-21377967493",
+      "targets": [
+        {
+          "columns": [],
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "Results",
+          "source": "url",
+          "type": "json",
+          "url": "/api/v1/view/Servers?$apply=groupby((AssetDeviceContractInformation/ContractStatus), aggregate($count as count))",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Server Contract Status",
+      "transformations": [
+        {
+          "disabled": true,
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "count"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "uid": "${Intersight_Data_Source}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true,
+            "footer": {
+              "reducers": []
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "OperState"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 91
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "count"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 75
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "BoundInterfaceDn"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 213
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "PinnedInterfaceDn"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 283
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "FI_Serial"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 219
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "SwitchProfileName"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 445
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 88
+      },
+      "id": 1,
+      "options": {
+        "cellHeight": "sm",
+        "enablePagination": true,
+        "showHeader": true
+      },
+      "pluginVersion": "12.4.0-21377967493",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "BoundInterfaceDn",
+              "text": "",
+              "type": "string"
+            },
+            {
+              "selector": "NetworkElement.Serial",
+              "text": "FI_Serial",
+              "type": "string"
+            },
+            {
+              "selector": "NetworkElement.SwitchProfileName",
+              "text": "SwitchProfileName",
+              "type": "string"
+            },
+            {
+              "selector": "OperState",
+              "text": "",
+              "type": "string"
+            },
+            {
+              "selector": "PinnedInterfaceDn",
+              "text": "",
+              "type": "string"
+            },
+            {
+              "selector": "VethId",
+              "text": "",
+              "type": "number"
+            }
+          ],
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "Results",
+          "source": "url",
+          "type": "json",
+          "url": "/api/v1/network/Vethernets?$top=1000&$expand=NetworkElement($select=Serial,SwitchProfileName)&$select=PinnedInterfaceDn,BoundInterfaceDn,OperState,NetworkElement,VethId",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Vethernet Count",
+      "transformations": [
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "FI_Serial": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "PinnedInterfaceDn": {
+                "aggregations": [
+                  "count"
+                ],
+                "operation": "groupby"
+              },
+              "SwitchProfileName": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "VethId": {
+                "aggregations": []
+              }
+            }
+          }
+        },
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": false,
+                "field": "SwitchProfileName"
+              }
+            ]
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {
+              "FI_Serial": 1,
+              "PinnedInterfaceDn": 2,
+              "PinnedInterfaceDn (count)": 3,
+              "SwitchProfileName": 0
+            },
+            "renameByName": {
+              "PinnedInterfaceDn (count)": "VethCount"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "uid": "${Intersight_Data_Source}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "color-text"
+            },
+            "filterable": true,
+            "footer": {
+              "reducers": []
+            },
+            "inspect": false,
+            "wrapText": false
+          },
+          "mappings": [
+            {
+              "options": {
+                "Not Covered": {
+                  "color": "red",
+                  "index": 0
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 97
+      },
+      "id": 13,
+      "options": {
+        "cellHeight": "sm",
+        "enablePagination": true,
+        "showHeader": true
+      },
+      "pluginVersion": "12.4.0-21377967493",
+      "targets": [
+        {
+          "columns": [],
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "Results",
+          "source": "url",
+          "type": "json",
+          "url": "/api/v1/asset/DeviceContractInformations?$filter=(((ContractStatus eq 'Not Covered'))) and (DeviceType in ('CiscoUcsServer','CiscoUcsChassis','CiscoUcsFI','CiscoEdgeChassis','CiscoEdgeServer'))&$select=DeviceId,DeviceType,ContractStatus,ContractStatusReason,PurchaseOrderNumber,SalesOrderNumber,ServiceDescription,ServiceStartDate,ServiceEndDate",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Asset Contract Status",
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "ContractStatus",
+                "ContractStatusReason",
+                "DeviceId",
+                "DeviceType",
+                "PurchaseOrderNumber",
+                "SalesOrderNumber",
+                "ServiceDescription",
+                "ServiceEndDate",
+                "ServiceStartDate"
+              ]
+            }
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {
+              "ContractStatus": 3,
+              "ContractStatusReason": 4,
+              "DeviceId": 1,
+              "DeviceType": 0,
+              "PurchaseOrderNumber": 5,
+              "SalesOrderNumber": 6,
+              "ServiceDescription": 2,
+              "ServiceEndDate": 8,
+              "ServiceStartDate": 7
+            },
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "uid": "${Intersight_Data_Source}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [
+            {
+              "options": {
+                "Incomplete": {
+                  "color": "red",
+                  "index": 0
+                },
+                "Not-Evaluated": {
+                  "color": "orange",
+                  "index": 3
+                },
+                "Not-Listed": {
+                  "color": "yellow",
+                  "index": 2
+                },
+                "Validated": {
+                  "color": "green",
+                  "index": 1
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 107
+      },
+      "id": 5,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "colorByField": "CondHclStatus/Status",
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [
+            "count"
+          ],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "orientation": "horizontal",
+        "showValue": "auto",
+        "stacking": "none",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        },
+        "xField": "CondHclStatus/Status",
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "pluginVersion": "12.4.0-21377967493",
+      "targets": [
+        {
+          "columns": [],
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "Results",
+          "source": "url",
+          "type": "json",
+          "url": "/api/v1/view/Servers?$apply=groupby((CondHclStatus/Status), aggregate($count as count))",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Server HCL Status Overview",
+      "transformations": [
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "count"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "uid": "${Intersight_Data_Source}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "color-text"
+            },
+            "filterable": true,
+            "footer": {
+              "reducers": []
+            },
+            "inspect": false,
+            "wrapText": false
+          },
+          "mappings": [
+            {
+              "options": {
+                "Incompatible-Components": {
+                  "color": "orange",
+                  "index": 6
+                },
+                "Incomplete": {
+                  "color": "red",
+                  "index": 2
+                },
+                "Missing-Os-Info": {
+                  "color": "orange",
+                  "index": 5
+                },
+                "Not Covered": {
+                  "color": "orange",
+                  "index": 0
+                },
+                "Not-Evaluated": {
+                  "color": "red",
+                  "index": 3
+                },
+                "Not-Listed": {
+                  "color": "orange",
+                  "index": 4
+                },
+                "Validated": {
+                  "color": "green",
+                  "index": 1
+                }
+              },
+              "type": "value"
+            },
+            {
+              "options": {
+                "pattern": "(Nutanix|HyperFlex).*",
+                "result": {
+                  "color": "blue",
+                  "index": 7
+                }
+              },
+              "type": "regex"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "HclOsVendor"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 143
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 116
+      },
+      "id": 14,
+      "options": {
+        "cellHeight": "sm",
+        "enablePagination": true,
+        "showHeader": true
+      },
+      "pluginVersion": "12.4.0-21377967493",
+      "targets": [
+        {
+          "columns": [],
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "Results",
+          "source": "url",
+          "type": "json",
+          "url": "/api/v1/cond/HclStatuses?$top=1000&$apply=groupby((ManagementMode,Personality,HardwareStatus,SoftwareStatus,ComponentStatus,HclOsVendor,HclOsVersion,Reason,Status,InvModel), aggregate($count as count))",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Server HCL Status Details",
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "ComponentStatus",
+                "HardwareStatus",
+                "HclOsVendor",
+                "InvModel",
+                "ManagementMode",
+                "Reason",
+                "SoftwareStatus",
+                "Status",
+                "count",
+                "Personality"
+              ]
+            }
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {
+              "ComponentStatus": 6,
+              "HardwareStatus": 4,
+              "HclOsVendor": 3,
+              "InvModel": 2,
+              "ManagementMode": 0,
+              "Personality": 1,
+              "Reason": 7,
+              "SoftwareStatus": 5,
+              "Status": 8,
+              "count": 9
+            },
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "${Intersight_Data_Source}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true,
+            "footer": {
+              "reducers": []
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 126
+      },
+      "id": 15,
+      "options": {
+        "cellHeight": "sm",
+        "enablePagination": true,
+        "showHeader": true
+      },
+      "pluginVersion": "12.4.0-21377967493",
+      "targets": [
+        {
+          "columns": [],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${Intersight_Data_Source}"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "Results",
+          "source": "url",
+          "type": "json",
+          "url": "/api/v1/aaa/AuditRecords?$top=1000&$apply=groupby((Event,Email), aggregate($count as count))",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Groupby Audit Logs",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {
+              "Email": 1,
+              "Event": 0,
+              "count": 2
+            },
+            "renameByName": {}
+          }
+        },
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "count"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "table"
+    }
+  ],
+  "preload": false,
+  "schemaVersion": 42,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allowCustomValue": false,
+        "current": {
+          "text": "cnc-infinity-datasource",
+          "value": "cfbdtn13gcxdsb"
+        },
+        "label": "Intersight_Data_Source",
+        "name": "Intersight_Data_Source",
+        "options": [],
+        "query": "yesoreyeram-infinity-datasource",
+        "refresh": 1,
+        "regex": "",
+        "type": "datasource"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Intersight Health Stats",
+  "uid": "adsxv26",
+  "version": 59,
+  "weekStart": ""
+}
