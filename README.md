@@ -1,2 +1,2 @@
 # grafana_dashboards
-Repo to hold Grafana Dashboards
+Repo to hold Intersight Grafana Dashboards
